@@ -1,0 +1,46 @@
+{
+    "name": "nepada/texy-nette",
+    "type": "library",
+    "license": "BSD-3-Clause",
+    "description": "Texy integration for Nette.",
+    "keywords": ["nette", "latte", "texy"],
+    "support": {
+        "email": "petr@pada.cz",
+        "issues": "https://github.com/nepada/template-factory/issues"
+    },
+    "authors": [
+        {
+            "name": "Petr Morávek",
+            "email": "petr@pada.cz"
+        }
+    ],
+    "require": {
+        "php": ">= 5.6.0",
+        "nette/utils": "~2.2@dev",
+        "latte/latte": "~2.2@dev",
+        "texy/texy": "~2.8@dev",
+        "nepada/template-factory": "~1.0@dev"
+    },
+    "require-dev": {
+        "nette/tester": "~1.6",
+        "nette/bootstrap": "~2.3@dev",
+        "nette/di": "~2.3@dev",
+        "nette/application": "~2.3@dev",
+        "nette/http": "~2.3@dev",
+        "tracy/tracy": "~2.3@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nepada\\Bridges\\": "src/Bridges/",
+            "Nepada\\Texy\\": "src/Texy/"
+        },
+        "classmap": [
+            "src/Texy/exceptions.php"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
