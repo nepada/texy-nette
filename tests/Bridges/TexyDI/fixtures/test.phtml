@@ -1,0 +1,41 @@
+<?php
+%A%
+// prolog Nepada\Bridges\TexyLatte\TexyModeMacro
+Nepada\Bridges\TexyLatte\TexyModeMacro::validateTemplate($template);
+
+//
+// main template
+//
+ob_start() ?>TYPO: ... example@example.com, http://example.com<?php echo $template->texyTypo(ob_get_clean()) ?>
+
+<?php ob_start() ?>LINE: ... example@example.com, http://example.com <p>paragraph</p><?php echo $template->texyLine(ob_get_clean()) ?>
+
+<?php ob_start() ?>BLOCK:
+... example@example.com, http://example.com <p>paragraph</p>
+
+Paragraph
+<?php echo $template->texy(ob_get_clean()) ?>
+
+<?php $_texyModeStack[] = $_texy->getMode(); $_texy->setMode("custom"); ob_start() ?>
+TYPO: ... example@example.com, http://example.com<?php echo $template->texyTypo(ob_get_clean()) ?>
+
+<?php ob_start() ?>LINE: ... example@example.com, http://example.com <p>paragraph</p><?php echo $template->texyLine(ob_get_clean()) ?>
+
+<?php ob_start() ?>BLOCK:
+... example@example.com, http://example.com <p>paragraph</p>
+
+Paragraph
+<?php echo $template->texy(ob_get_clean()) ?>
+
+<?php $_texyModeStack[] = $_texy->getMode(); $_texy->setMode("default"); ob_start() ?>
+TYPO: ... example@example.com, http://example.com<?php echo $template->texyTypo(ob_get_clean()) ?>
+
+<?php ob_start() ?>LINE: ... example@example.com, http://example.com <p>paragraph</p><?php echo $template->texyLine(ob_get_clean()) ?>
+
+<?php ob_start() ?>BLOCK:
+... example@example.com, http://example.com <p>paragraph</p>
+
+Paragraph
+<?php echo $template->texy(ob_get_clean()) ?>
+
+<?php $_texy->setMode(array_pop($_texyModeStack)); $_texy->setMode(array_pop($_texyModeStack));%A%

@@ -1,0 +1,17 @@
+services:
+    texyFactory:
+        implement: Nepada\Texy\ITexyFactory
+        factory: Texy\Texy
+        setup:
+            - $obfuscateEmail(false)
+
+extensions:
+    templateFactory: Nepada\Bridges\TemplateFactoryDI\TemplateFactoryExtension
+    texy: Nepada\Bridges\TexyDI\TexyExtension
+
+texy:
+    factories:
+        custom: @texyFactory
+
+application:
+    scanDirs: false
