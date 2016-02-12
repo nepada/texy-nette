@@ -53,10 +53,9 @@ If you need to switch between different Texy modes, wrap your code into macro `{
 
 ### In presenters and other controls
 
-The preferred way is to inject `Nepada\Texy\TexyMultiplier` instance wherever you need it, set desired mode and get created Texy instance, e.g:
+The preferred way is to inject `Nepada\Texy\TexyMultiplier` instance wherever you need it, and either use it directly or pull out desired Texy instance, e.g:
 
  ```php
-$multiplier->setMode('myMode');
-$texy = $multiplier->getTexy();
+$texy = $multiplier->getTexy('myMode');
 $texy->process(...);
  ```

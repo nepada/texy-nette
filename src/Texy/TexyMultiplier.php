@@ -66,17 +66,21 @@ class TexyMultiplier extends Nette\Object
     }
 
     /**
+     * @param string|null $mode
      * @return Texy\Texy
      */
-    public function getTexy()
+    public function getTexy($mode = null)
     {
-        if (!isset($this->texy[$this->mode])) {
-            if (!isset($this->factories[$this->mode])) {
-                throw new InvalidStateException("Missing Texy! factory for mode '{$this->mode}'.");
+        $mode = $mode === null ? $this->mode : $mode;
+
+        if (!isset($this->texy[$mode])) {
+            if (!isset($this->factories[$mode])) {
+                throw new InvalidStateException("Missing Texy! factory for mode '{$mode}'.");
             }
-            $this->texy[$this->mode] = $this->factories[$this->mode]->create();
+            $this->texy[$mode] = $this->factories[$mode]->create();
         }
-        return $this->texy[$this->mode];
+
+        return $this->texy[$mode];
     }
 
     /**

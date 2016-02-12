@@ -39,6 +39,10 @@ class TexyMultiplierTest extends Tester\TestCase
         Assert::same('AAA', $multiplier->processTypo('AAA'));
         Assert::same('AAA', $multiplier->processLine('AAA'));
         Assert::same("<p>AAA</p>\n", $multiplier->process('AAA'));
+
+        $texy = $multiplier->getTexy();
+        $multiplier->setMode('other');
+        Assert::same($texy, $multiplier->getTexy('test'));
     }
 
 }
