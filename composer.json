@@ -17,9 +17,7 @@
     "require": {
         "php": ">= 5.6.0",
         "nette/utils": "~2.2@dev",
-        "latte/latte": "~2.2@dev",
-        "texy/texy": "~2.8@dev",
-        "nepada/template-factory": "~1.0@dev"
+        "texy/texy": "~2.8@dev"
     },
     "require-dev": {
         "nette/tester": "~1.6",
@@ -27,7 +25,9 @@
         "nette/di": "~2.3@dev",
         "nette/application": "~2.3@dev",
         "nette/http": "~2.3@dev",
-        "tracy/tracy": "~2.3@dev"
+        "latte/latte": "~2.2@dev",
+        "tracy/tracy": "~2.3@dev",
+        "nepada/template-factory": "~1.0@dev"
     },
     "autoload": {
         "psr-4": {
