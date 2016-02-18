@@ -24,24 +24,26 @@ class TexyExtension extends Nette\DI\CompilerExtension
 
     public function loadConfiguration()
     {
+        $this->defaults['factories']['default'] = $this->prefix('@texyFactory');
+
         $container = $this->getContainerBuilder();
         $config = $this->validateConfig($this->defaults);
 
         $container->addDefinition($this->prefix('texyFactory'))
             ->setClass(Texy\TexyFactory::class);
 
-        $multiplier = $container->addDefinition($this->prefix('multiplier'))
-            ->setClass(Texy\TexyMultiplier::class, [$config['defaultMode']])
-            ->addSetup('addFactory', ['default', $this->prefix('@texyFactory')]);
-
-        foreach ($config['factories'] as $name => $factory) {
-            $multiplier->addSetup('addFactory', [$name, $factory]);
-        }
+        $container->addDefinition($this->prefix('multiplier'))
+            ->setClass(Texy\TexyMultiplier::class, [$config['defaultMode']]);
     }
 
     public function beforeCompile()
     {
         $container = $this->getContainerBuilder();
+
+        $multiplier = $container->getDefinition($this->prefix('multiplier'));
+        foreach ($this->config['factories'] as $name => $factory) {
+            $multiplier->addSetup('addFactory', [$name, $factory]);
+        }
 
         if (!class_exists(Latte\Engine::class)) {
             return;
