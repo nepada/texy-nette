@@ -29,6 +29,11 @@
         "tracy/tracy": "^2.3@dev",
         "nepada/template-factory": "^1.0@dev"
     },
+    "suggest": {
+        "nette/di": "for integration with Nette DI container",
+        "latte/latte": "to use Latte with custom Texy! macros in templates",
+        "nepada/template-factory": "to automatically inject required services into Latte templates"
+    },
     "autoload": {
         "psr-4": {
             "Nepada\\Bridges\\": "src/Bridges/",
