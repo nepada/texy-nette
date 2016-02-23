@@ -48,16 +48,18 @@ class TexyExtension extends Nette\DI\CompilerExtension
         if (!class_exists(Latte\Engine::class)) {
             return;
         }
-
         $latteExtension = $this->compiler->getExtensions(Nette\Bridges\ApplicationDI\LatteExtension::class);
         if (!$latteExtension) {
             throw new Texy\InvalidStateException("LatteExtension not found, did you register it in your configuration?");
         }
         reset($latteExtension)->addMacro(Nepada\Bridges\TexyLatte\TexyModeMacro::class . '::install');
 
+        if (!class_exists(Nepada\TemplateFactory\TemplateConfigurator::class)) {
+            return;
+        }
         $templateConfigurator = $container->getByType(Nepada\TemplateFactory\TemplateConfigurator::class);
         if (!$templateConfigurator) {
-            throw new Texy\InvalidStateException("Could not find TemplateConfigurator service, have you installed and enabled nepada/template-factory?");
+            throw new Texy\InvalidStateException("Could not find TemplateConfigurator service, did you register TemplateFactoryExtension in your configuration?");
         }
         $container->getDefinition($templateConfigurator)
             ->addSetup('addFilter', array('texy', array($this->prefix('@multiplier'), 'process')))
