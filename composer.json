@@ -27,7 +27,14 @@
         "nette/http": "^2.3@dev",
         "latte/latte": "^2.2@dev",
         "tracy/tracy": "^2.3@dev",
-        "nepada/template-factory": "^1.0@dev"
+        "nepada/template-factory": "^1.0@dev",
+
+        "nette/neon": "^2.2@dev",
+        "nette/php-generator": "^2.2@dev",
+        "nette/component-model": "^2.2@dev",
+        "nette/reflection": "^2.2@dev",
+        "nette/caching": "^2.2@dev",
+        "nette/finder": "^2.2@dev"
     },
     "suggest": {
         "nette/di": "for integration with Nette DI container",
