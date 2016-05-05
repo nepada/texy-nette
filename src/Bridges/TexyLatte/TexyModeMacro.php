@@ -11,6 +11,7 @@ use Latte\MacroNode;
 use Nepada;
 use Nepada\Texy\TexyMultiplier;
 use Nette;
+use Tracy\Debugger;
 
 
 /**
@@ -94,10 +95,9 @@ class TexyModeMacro extends Nette\Object implements Latte\IMacro
      */
     public static function validateTemplate(Latte\Template $template)
     {
-        $params = $template->getParameters();
-        if (!isset($params['_texy']) || !$params['_texy'] instanceof TexyMultiplier) {
-            $where = isset($params['control']) && $params['control'] instanceof Nette\ComponentModel\IComponent
-                ? ' in component ' . get_class($params['control']) . '(' . $params['control']->getName() . ')'
+        if (!isset($template->_texy) || !$template->_texy instanceof TexyMultiplier) {
+            $where = isset($template->control) && $template->control instanceof Nette\ComponentModel\IComponent
+                ? ' in component ' . get_class($template->control) . '(' . $template->control->getName() . ')'
                 : null;
 
             throw new Nepada\Texy\InvalidStateException("TexyMultiplier instance not found{$where}.");
