@@ -34,6 +34,9 @@ class TexyExtension extends Nette\DI\CompilerExtension
 
         $container->addDefinition($this->prefix('multiplier'))
             ->setClass(Texy\TexyMultiplier::class, [$config['defaultMode']]);
+
+        $container->addDefinition($this->prefix('latteFilters'))
+            ->setClass(Nepada\Bridges\TexyLatte\TexyFilters::class);
     }
 
     public function beforeCompile()
@@ -62,9 +65,9 @@ class TexyExtension extends Nette\DI\CompilerExtension
             throw new Texy\InvalidStateException("Could not find TemplateConfigurator service, did you register TemplateFactoryExtension in your configuration?");
         }
         $container->getDefinition($templateConfigurator)
-            ->addSetup('addFilter', array('texy', array($this->prefix('@multiplier'), 'process')))
-            ->addSetup('addFilter', array('texyLine', array($this->prefix('@multiplier'), 'processLine')))
-            ->addSetup('addFilter', array('texyTypo', array($this->prefix('@multiplier'), 'processTypo')))
+            ->addSetup('addFilter', array('texy', array($this->prefix('@latteFilters'), 'process')))
+            ->addSetup('addFilter', array('texyLine', array($this->prefix('@latteFilters'), 'processLine')))
+            ->addSetup('addFilter', array('texyTypo', array($this->prefix('@latteFilters'), 'processTypo')))
             ->addSetup('addParameter', ['_texy', $this->prefix('@multiplier')])
             ->addSetup('addParameter', ['texy', $this->prefix('@multiplier')]);
     }

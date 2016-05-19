@@ -1,33 +1,74 @@
 <?php
-%A%Nepada\Bridges\TexyLatte\TexyModeMacro::validateTemplate($template);
-%A%ob_start(%a?%) ?>TYPO: ... example@example.com, http://example.com<?php%A?%%s%echo %a%->texyTypo%a%ob_get_clean()) ?>
+// source: %a%Bridges/TexyDI/fixtures/test.latte
+%A%
+%s%Nepada\Bridges\TexyLatte\TexyModeMacro::validateTemplate($template);%A%
+%a%echo%a%texytypo%a%$textTypo%a%
 
-<?php%A?%%s%ob_start(%a?%) ?>LINE: ... example@example.com, http://example.com <p>paragraph</p><?php%A?%%s%echo %a%->texyLine%a%ob_get_clean()) ?>
+%a%echo%a%texyline%a%$textLine%a%
 
-<?php%A?%%s%ob_start(%a?%) ?>BLOCK:
-... example@example.com, http://example.com <p>paragraph</p>
+%a%echo%a%texy%a%$textBlock%a%
 
-Paragraph
-<?php%A?%%s%echo %a%->texy%a%ob_get_clean()) ?>
+<?php ob_start(function () {}) ?>LatteBlock <?php
+%s%echo %a%escapeHtml($textTypo);
+%a%
+%s%echo%a%texytypo%a%ob_get_clean()%a%
 
-<?php%A?%%s%$_texyModeStack[] = $_texy->getMode();%A%$_texy->setMode("custom");%A%ob_start(%a?%) ?>%A?%TYPO: ... example@example.com, http://example.com<?php%A?%%s%echo %a%->texyTypo%a%ob_get_clean()) ?>
+<?php ob_start(function () {}) ?>LatteBlock <?php
+%s%echo $textLine;
+%a%
+%s%echo%a%texyline%a%ob_get_clean()%a%
 
-<?php%A?%%s%ob_start(%a?%) ?>LINE: ... example@example.com, http://example.com <p>paragraph</p><?php%A?%%s%echo %a%->texyLine%a%ob_get_clean()) ?>
+<?php ob_start(function () {}) ?>LatteBlock <?php
+%s%echo $textBlock;
+%a%
+%s%echo%a%texy%a%ob_get_clean()%a%
+%A%
+%s%$_texyModeStack[] = $_texy->getMode();
+%s%$_texy->setMode("custom");
+%a%echo%a%texytypo%a%$textTypo%a%
 
-<?php%A?%%s%ob_start(%a?%) ?>BLOCK:
-... example@example.com, http://example.com <p>paragraph</p>
+%a%echo%a%texyline%a%$textLine%a%
 
-Paragraph
-<?php%A?%%s%echo %a%->texy%a%ob_get_clean()) ?>
+%a%echo%a%texy%a%$textBlock%a%
 
-<?php%A?%%s%$_texyModeStack[] = $_texy->getMode();%A%$_texy->setMode("default");%A%ob_start(%a?%) ?>%A?%TYPO: ... example@example.com, http://example.com<?php%A?%%s%echo %a%->texyTypo%a%ob_get_clean()) ?>
+<?php ob_start(function () {}) ?>LatteBlock <?php
+%s%echo %a%escapeHtml($textTypo);
+%a%
+%s%echo%a%texytypo%a%ob_get_clean()%a%
 
-<?php%A?%%s%ob_start(%a?%) ?>LINE: ... example@example.com, http://example.com <p>paragraph</p><?php%A?%%s%echo %a%->texyLine%a%ob_get_clean()) ?>
+<?php ob_start(function () {}) ?>LatteBlock <?php
+%s%echo $textLine;
+%a%
+%s%echo%a%texyline%a%ob_get_clean()%a%
 
-<?php%A?%%s%ob_start(%a?%) ?>BLOCK:
-... example@example.com, http://example.com <p>paragraph</p>
+<?php ob_start(function () {}) ?>LatteBlock <?php
+%s%echo $textBlock;
+%a%
+%s%echo%a%texy%a%ob_get_clean()%a%
+%A%
+%s%$_texyModeStack[] = $_texy->getMode();
+%s%$_texy->setMode("default");
+%a%echo%a%texytypo%a%$textTypo%a%
 
-Paragraph
-<?php%A?%%s%echo %a%->texy%a%ob_get_clean()) ?>
+%a%echo%a%texyline%a%$textLine%a%
 
-<?php%A?%%s%$_texy->setMode(array_pop($_texyModeStack));%A%$_texy->setMode(array_pop($_texyModeStack));%A%
+%a%echo%a%texy%a%$textBlock%a%
+
+<?php ob_start(function () {}) ?>LatteBlock <?php
+%s%echo %a%escapeHtml($textTypo);
+%a%
+%s%echo%a%texytypo%a%ob_get_clean()%a%
+
+<?php ob_start(function () {}) ?>LatteBlock <?php
+%s%echo $textLine;
+%a%
+%s%echo%a%texyline%a%ob_get_clean()%a%
+
+<?php ob_start(function () {}) ?>LatteBlock <?php
+%s%echo $textBlock;
+%a%
+%s%echo%a%texy%a%ob_get_clean()%a%
+%A%
+%s%$_texy->setMode(array_pop($_texyModeStack));
+%s%$_texy->setMode(array_pop($_texyModeStack));
+%A%
