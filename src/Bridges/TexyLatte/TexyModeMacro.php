@@ -95,9 +95,10 @@ class TexyModeMacro extends Nette\Object implements Latte\IMacro
      */
     public static function validateTemplate(Latte\Template $template)
     {
-        if (!isset($template->_texy) || !$template->_texy instanceof TexyMultiplier) {
-            $where = isset($template->control) && $template->control instanceof Nette\ComponentModel\IComponent
-                ? ' in component ' . get_class($template->control) . '(' . $template->control->getName() . ')'
+        $parameters = $template->getParameters();
+        if (!isset($parameters['_texy']) || !$parameters['_texy'] instanceof TexyMultiplier) {
+            $where = isset($parameters['control']) && $parameters['control'] instanceof Nette\ComponentModel\IComponent
+                ? ' in component ' . get_class($parameters['control']) . '(' . $parameters['control']->getName() . ')'
                 : null;
 
             throw new Nepada\Texy\InvalidStateException("TexyMultiplier instance not found{$where}.");

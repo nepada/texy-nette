@@ -13,9 +13,6 @@ use Texy;
 /**
  * @property-read Texy\Texy $texy
  * @property string $mode
- * @method string process(string $text, bool $singleLine = false)
- * @method string processLine(string $text)
- * @method string processTypo(string $text)
  */
 class TexyMultiplier extends Nette\Object
 {
@@ -84,13 +81,31 @@ class TexyMultiplier extends Nette\Object
     }
 
     /**
-     * @param string $name
-     * @param array $args
-     * @return mixed
+     * @param string $text
+     * @param bool $singleLine
+     * @return string
      */
-    public function __call($name, $args)
+    public function process($text, $singleLine = false)
     {
-        return call_user_func_array(array($this->getTexy(), $name), $args);
+        return $this->getTexy()->process($text, $singleLine);
+    }
+
+    /**
+     * @param string $text
+     * @return string
+     */
+    public function processLine($text)
+    {
+        return $this->getTexy()->processLine($text);
+    }
+
+    /**
+     * @param string $text
+     * @return string
+     */
+    public function processTypo($text)
+    {
+        return $this->getTexy()->processTypo($text);
     }
 
 }
