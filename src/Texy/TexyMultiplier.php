@@ -12,6 +12,7 @@ use Texy;
 
 /**
  * @property-read Texy\Texy $texy
+ * @property-read int $outputMode
  * @property string $mode
  */
 class TexyMultiplier extends Nette\Object
@@ -106,6 +107,14 @@ class TexyMultiplier extends Nette\Object
     public function processTypo($text)
     {
         return $this->getTexy()->processTypo($text);
+    }
+
+    /**
+     * @return int
+     */
+    public function getOutputMode()
+    {
+        return $this->getTexy()->getOutputMode();
     }
 
 }
