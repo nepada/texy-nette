@@ -11,7 +11,6 @@ use Latte\MacroNode;
 use Nepada;
 use Nepada\Texy\TexyMultiplier;
 use Nette;
-use Tracy\Debugger;
 
 
 /**
