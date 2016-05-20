@@ -26,7 +26,7 @@
 %s%echo%a%texy%a%ob_get_clean()%a%
 ?>
 %A%
-%s%$_texyModeStack[] = $_texy->getMode();
+%s%$this->global->texyModeStack[] = $_texy->getMode();
 %s%$_texy->setMode("custom");
 %a%echo%a%texytypo%a%$textTypo%a%
 
@@ -52,7 +52,7 @@
 %s%echo%a%texy%a%ob_get_clean()%a%
 ?>
 %A%
-%s%$_texyModeStack[] = $_texy->getMode();
+%s%$this->global->texyModeStack[] = $_texy->getMode();
 %s%$_texy->setMode("default");
 %a%echo%a%texytypo%a%$textTypo%a%
 
@@ -78,6 +78,6 @@
 %s%echo%a%texy%a%ob_get_clean()%a%
 ?>
 %A%
-%s%$_texy->setMode(array_pop($_texyModeStack));
-%s%$_texy->setMode(array_pop($_texyModeStack));
+%s%$_texy->setMode(array_pop($this->global->texyModeStack));
+%s%$_texy->setMode(array_pop($this->global->texyModeStack));
 %A%
