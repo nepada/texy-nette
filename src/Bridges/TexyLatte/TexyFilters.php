@@ -42,7 +42,7 @@ class TexyFilters extends Nette\Object
         }
 
         $filterInfo->contentType = ($this->texyMultiplier->getTexy()->getOutputMode() & Texy::XML) ? Engine::CONTENT_XHTML : Engine::CONTENT_HTML;
-        return new Latte\Runtime\Html($this->texyMultiplier->process($text, $singleLine));
+        return $this->texyMultiplier->process($text, $singleLine);
     }
 
     /**
@@ -57,7 +57,7 @@ class TexyFilters extends Nette\Object
         }
 
         $filterInfo->contentType = ($this->texyMultiplier->getTexy()->getOutputMode() & Texy::XML) ? Engine::CONTENT_XHTML : Engine::CONTENT_HTML;
-        return new Latte\Runtime\Html($this->texyMultiplier->processLine($text));
+        return $this->texyMultiplier->processLine($text);
     }
 
     /**
