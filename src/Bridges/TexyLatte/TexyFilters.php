@@ -41,7 +41,7 @@ class TexyFilters extends Nette\Object
             trigger_error("Filter |texy used with incompatible type " . strtoupper($filterInfo->contentType), E_USER_WARNING);
         }
 
-        $filterInfo->contentType = ($this->texyMultiplier->getTexy()->getOutputMode() & Texy::XML) ? Engine::CONTENT_XHTML : Engine::CONTENT_HTML;
+        $filterInfo->contentType = ($this->texyMultiplier->getOutputMode() & Texy::XML) ? Engine::CONTENT_XHTML : Engine::CONTENT_HTML;
         return $this->texyMultiplier->process($text, $singleLine);
     }
 
@@ -56,7 +56,7 @@ class TexyFilters extends Nette\Object
             trigger_error("Filter |texyLine used with incompatible type " . strtoupper($filterInfo->contentType), E_USER_WARNING);
         }
 
-        $filterInfo->contentType = ($this->texyMultiplier->getTexy()->getOutputMode() & Texy::XML) ? Engine::CONTENT_XHTML : Engine::CONTENT_HTML;
+        $filterInfo->contentType = ($this->texyMultiplier->getOutputMode() & Texy::XML) ? Engine::CONTENT_XHTML : Engine::CONTENT_HTML;
         return $this->texyMultiplier->processLine($text);
     }
 
