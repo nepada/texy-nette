@@ -30,7 +30,7 @@
         "nette/http": "^2.3@dev",
         "latte/latte": "^2.4@dev",
         "tracy/tracy": "^2.3@dev",
-        "nepada/template-factory": "^1.0@dev",
+        "nepada/template-factory": "^1.1@dev",
 
         "nette/neon": "^2.2@dev",
         "nette/php-generator": "^2.2@dev",

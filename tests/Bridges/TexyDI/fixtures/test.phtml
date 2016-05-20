@@ -1,7 +1,7 @@
 <?php
 // source: %a%Bridges/TexyDI/fixtures/test.latte
 %A%
-%s%Nepada\Bridges\TexyLatte\TexyModeMacro::validateTemplate($template);%A%
+%s%Nepada\Bridges\TexyLatte\TexyModeMacro::validateTemplate($this);%A%
 %a%echo%a%texytypo%a%$textTypo%a%
 
 %a%echo%a%texyline%a%$textLine%a%
@@ -26,8 +26,8 @@
 %s%echo%a%texy%a%ob_get_clean()%a%
 ?>
 %A%
-%s%$this->global->texyModeStack[] = $_texy->getMode();
-%s%$_texy->setMode("custom");
+%s%$this->global->texyModeStack[] = $this->global->texy->getMode();
+%s%$this->global->texy->setMode("custom");
 %a%echo%a%texytypo%a%$textTypo%a%
 
 %a%echo%a%texyline%a%$textLine%a%
@@ -52,8 +52,8 @@
 %s%echo%a%texy%a%ob_get_clean()%a%
 ?>
 %A%
-%s%$this->global->texyModeStack[] = $_texy->getMode();
-%s%$_texy->setMode("default");
+%s%$this->global->texyModeStack[] = $this->global->texy->getMode();
+%s%$this->global->texy->setMode("default");
 %a%echo%a%texytypo%a%$textTypo%a%
 
 %a%echo%a%texyline%a%$textLine%a%
@@ -78,6 +78,6 @@
 %s%echo%a%texy%a%ob_get_clean()%a%
 ?>
 %A%
-%s%$_texy->setMode(array_pop($this->global->texyModeStack));
-%s%$_texy->setMode(array_pop($this->global->texyModeStack));
+%s%$this->global->texy->setMode(array_pop($this->global->texyModeStack));
+%s%$this->global->texy->setMode(array_pop($this->global->texyModeStack));
 %A%

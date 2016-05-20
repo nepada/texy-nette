@@ -50,7 +50,7 @@ class TexyModeMacro implements Latte\IMacro
     public function finalize()
     {
         if ($this->isUsed) {
-            return array(static::class . '::validateTemplate($template);', '');
+            return array(static::class . '::validateTemplate($this);', '');
         }
     }
 
@@ -77,7 +77,7 @@ class TexyModeMacro implements Latte\IMacro
         $node->isEmpty = false;
         $node->tokenizer->reset();
         $node->openingCode = Latte\PhpWriter::using($node)
-            ->write('<?php $this->global->texyModeStack[] = $_texy->getMode(); $_texy->setMode(%node.word); ?>');
+            ->write('<?php $this->global->texyModeStack[] = $this->global->texy->getMode(); $this->global->texy->setMode(%node.word); ?>');
     }
 
     /**
@@ -87,7 +87,7 @@ class TexyModeMacro implements Latte\IMacro
      */
     public function nodeClosed(MacroNode $node)
     {
-        $node->closingCode = '<?php $_texy->setMode(array_pop($this->global->texyModeStack)); ?>';
+        $node->closingCode = '<?php $this->global->texy->setMode(array_pop($this->global->texyModeStack)); ?>';
     }
 
     /**
@@ -96,10 +96,9 @@ class TexyModeMacro implements Latte\IMacro
      */
     public static function validateTemplate(Latte\Template $template)
     {
-        $parameters = $template->getParameters();
-        if (!isset($parameters['_texy']) || !$parameters['_texy'] instanceof TexyMultiplier) {
-            $where = isset($parameters['control']) && $parameters['control'] instanceof Nette\ComponentModel\IComponent
-                ? ' in component ' . get_class($parameters['control']) . '(' . $parameters['control']->getName() . ')'
+        if (!isset($template->global->texy) || !$template->global->texy instanceof TexyMultiplier) {
+            $where = isset($template->global->control) && $template->global->control instanceof Nette\ComponentModel\IComponent
+                ? ' in component ' . get_class($template->global->control) . '(' . $template->global->control->getName() . ')'
                 : null;
 
             throw new Nepada\Texy\InvalidStateException("TexyMultiplier instance not found{$where}.");

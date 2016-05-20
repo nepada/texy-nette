@@ -68,7 +68,7 @@ class TexyExtension extends Nette\DI\CompilerExtension
             ->addSetup('addFilter', array('texy', array($this->prefix('@latteFilters'), 'process')))
             ->addSetup('addFilter', array('texyLine', array($this->prefix('@latteFilters'), 'processLine')))
             ->addSetup('addFilter', array('texyTypo', array($this->prefix('@latteFilters'), 'processTypo')))
-            ->addSetup('addParameter', ['_texy', $this->prefix('@multiplier')])
+            ->addSetup('addProvider', ['texy', $this->prefix('@multiplier')])
             ->addSetup('addParameter', ['texy', $this->prefix('@multiplier')]);
     }
 
