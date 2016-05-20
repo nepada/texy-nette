@@ -15,8 +15,10 @@ use Texy;
  * @property-read int $outputMode
  * @property string $mode
  */
-class TexyMultiplier extends Nette\Object
+class TexyMultiplier
 {
+
+    use Nette\SmartObject;
 
     /** @var ITexyFactory[] */
     private $factories = [];

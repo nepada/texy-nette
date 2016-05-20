@@ -14,8 +14,10 @@ use Nette;
 use Texy\Texy;
 
 
-class TexyFilters extends Nette\Object
+class TexyFilters
 {
+
+    use Nette\SmartObject;
 
     /** @var TexyMultiplier */
     private $texyMultiplier;

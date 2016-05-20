@@ -17,8 +17,10 @@ use Tracy\Debugger;
 /**
  * Macro {texyMode ...}
  */
-class TexyModeMacro extends Nette\Object implements Latte\IMacro
+class TexyModeMacro implements Latte\IMacro
 {
+
+    use Nette\SmartObject;
 
     /** @var bool */
     private $isUsed;
