@@ -24,7 +24,7 @@
     },
     "require-dev": {
         "nette/tester": "^1.6",
-        "nette/bootstrap": "^2.3@dev",
+        "nette/bootstrap": "^2.4@dev",
         "nette/di": "^2.3@dev",
         "nette/application": "^2.4@dev",
         "nette/http": "^2.3@dev",
