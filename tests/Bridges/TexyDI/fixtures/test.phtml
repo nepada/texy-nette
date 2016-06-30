@@ -1,7 +1,6 @@
 <?php
 // source: %a%Bridges/TexyDI/fixtures/test.latte
 %A%
-%s%Nepada\Bridges\TexyLatte\TexyModeMacro::validateTemplate($this);%A%
 %a%echo%a%texytypo%a%$textTypo%a%
 
 %a%echo%a%texyline%a%$textLine%a%
@@ -9,7 +8,7 @@
 %a%echo%a%texy%a%$textBlock%a%
 
 <?php ob_start(function () {}) ?>LatteBlock <?php
-%s%echo %a%escapeHtml($textTypo)%a%
+%s%echo %a%escapeHtmlText($textTypo)%a%
 %a%
 %s%echo%a%texytypo%a%ob_get_clean()%a%
 ?>
@@ -35,7 +34,7 @@
 %a%echo%a%texy%a%$textBlock%a%
 
 <?php ob_start(function () {}) ?>LatteBlock <?php
-%s%echo %a%escapeHtml($textTypo)%a%
+%s%echo %a%escapeHtmlText($textTypo)%a%
 %a%
 %s%echo%a%texytypo%a%ob_get_clean()%a%
 ?>
@@ -61,7 +60,7 @@
 %a%echo%a%texy%a%$textBlock%a%
 
 <?php ob_start(function () {}) ?>LatteBlock <?php
-%s%echo %a%escapeHtml($textTypo)%a%
+%s%echo %a%escapeHtmlText($textTypo)%a%
 %a%
 %s%echo%a%texytypo%a%ob_get_clean()%a%
 ?>
@@ -80,4 +79,6 @@
 %A%
 %s%$this->global->texy->setMode(array_pop($this->global->texyModeStack));
 %s%$this->global->texy->setMode(array_pop($this->global->texyModeStack));
+%A%
+%s%Nepada\Bridges\TexyLatte\TexyModeMacro::validateTemplate($this);
 %A%
