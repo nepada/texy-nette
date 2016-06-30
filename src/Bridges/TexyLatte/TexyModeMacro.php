@@ -91,10 +91,10 @@ class TexyModeMacro implements Latte\IMacro
     }
 
     /**
-     * @param Latte\Template $template
+     * @param Latte\Runtime\Template $template
      * @throws Nepada\Texy\InvalidStateException
      */
-    public static function validateTemplate(Latte\Template $template)
+    public static function validateTemplate(Latte\Runtime\Template $template)
     {
         if (!isset($template->global->texy) || !$template->global->texy instanceof TexyMultiplier) {
             $where = isset($template->global->control) && $template->global->control instanceof Nette\ComponentModel\IComponent
