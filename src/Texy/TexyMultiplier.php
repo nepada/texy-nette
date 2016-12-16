@@ -21,10 +21,10 @@ class TexyMultiplier
     use Nette\SmartObject;
 
     /** @var ITexyFactory[] */
-    private $factories = [];
+    private $factories;
 
     /** @var Texy\Texy[] */
-    private $texy = [];
+    private $texy;
 
     /** @var string */
     private $mode;
