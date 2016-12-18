@@ -10,7 +10,6 @@ namespace NepadaTests\Texy;
 
 use Nepada\Texy;
 use Nepada\Texy\TexyFactory;
-use Nette;
 use Tester;
 use Tester\Assert;
 

@@ -6,10 +6,10 @@
 
 namespace Nepada\Bridges\TexyDI;
 
+use Latte;
 use Nepada;
 use Nepada\Texy;
 use Nette;
-use Latte;
 
 
 class TexyExtension extends Nette\DI\CompilerExtension
@@ -53,7 +53,7 @@ class TexyExtension extends Nette\DI\CompilerExtension
         }
         $latteExtension = $this->compiler->getExtensions(Nette\Bridges\ApplicationDI\LatteExtension::class);
         if (!$latteExtension) {
-            throw new Texy\InvalidStateException("LatteExtension not found, did you register it in your configuration?");
+            throw new Texy\InvalidStateException('LatteExtension not found, did you register it in your configuration?');
         }
         reset($latteExtension)->addMacro(Nepada\Bridges\TexyLatte\TexyModeMacro::class . '::install');
 
@@ -62,12 +62,12 @@ class TexyExtension extends Nette\DI\CompilerExtension
         }
         $templateConfigurator = $container->getByType(Nepada\TemplateFactory\TemplateConfigurator::class);
         if (!$templateConfigurator) {
-            throw new Texy\InvalidStateException("Could not find TemplateConfigurator service, did you register TemplateFactoryExtension in your configuration?");
+            throw new Texy\InvalidStateException('Could not find TemplateConfigurator service, did you register TemplateFactoryExtension in your configuration?');
         }
         $container->getDefinition($templateConfigurator)
-            ->addSetup('addFilter', array('texy', array($this->prefix('@latteFilters'), 'process')))
-            ->addSetup('addFilter', array('texyLine', array($this->prefix('@latteFilters'), 'processLine')))
-            ->addSetup('addFilter', array('texyTypo', array($this->prefix('@latteFilters'), 'processTypo')))
+            ->addSetup('addFilter', ['texy', [$this->prefix('@latteFilters'), 'process']])
+            ->addSetup('addFilter', ['texyLine', [$this->prefix('@latteFilters'), 'processLine']])
+            ->addSetup('addFilter', ['texyTypo', [$this->prefix('@latteFilters'), 'processTypo']])
             ->addSetup('addProvider', ['texy', $this->prefix('@multiplier')])
             ->addSetup('addParameter', ['texy', $this->prefix('@multiplier')]);
     }
