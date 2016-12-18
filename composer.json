@@ -24,6 +24,7 @@
     },
     "require-dev": {
         "nette/tester": "^1.6",
+        "nepada/coding-standard": "^1.0",
         "nette/bootstrap": "^2.3@dev",
         "nette/di": "^2.3@dev",
         "nette/application": "~2.3.0@dev",
