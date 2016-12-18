@@ -48,7 +48,7 @@ class TexyModeMacro extends Nette\Object implements Latte\IMacro
     public function finalize()
     {
         if ($this->isUsed) {
-            return array(static::class . '::validateTemplate($template);', '');
+            return [static::class . '::validateTemplate($template);', ''];
         }
     }
 
@@ -56,7 +56,7 @@ class TexyModeMacro extends Nette\Object implements Latte\IMacro
      * New node is found. Returns FALSE to reject.
      *
      * @param MacroNode $node
-     * @return bool
+     * @return void
      * @throws Latte\CompileException
      */
     public function nodeOpened(MacroNode $node)
