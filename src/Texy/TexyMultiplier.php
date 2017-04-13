@@ -57,7 +57,7 @@ class TexyMultiplier
 
     /**
      * @param string $name
-     * @return self
+     * @return static
      */
     public function setMode($name)
     {
