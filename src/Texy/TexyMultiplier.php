@@ -55,7 +55,7 @@ class TexyMultiplier extends Nette\Object
 
     /**
      * @param string $name
-     * @return self
+     * @return static
      */
     public function setMode($name)
     {
