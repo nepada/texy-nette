@@ -4,6 +4,8 @@
  * Copyright (c) 2016 Petr Morávek (petr@pada.cz)
  */
 
+declare(strict_types = 1);
+
 namespace Nepada\Texy;
 
 use Nette;
@@ -33,7 +35,7 @@ class TexyMultiplier
     /**
      * @param string $defaultMode
      */
-    public function __construct($defaultMode)
+    public function __construct(string $defaultMode)
     {
         $this->setMode($defaultMode);
     }
@@ -42,7 +44,7 @@ class TexyMultiplier
      * @param string $name
      * @param ITexyFactory $factory
      */
-    public function addFactory($name, ITexyFactory $factory)
+    public function addFactory(string $name, ITexyFactory $factory): void
     {
         $this->factories[$name] = $factory;
     }
@@ -50,7 +52,7 @@ class TexyMultiplier
     /**
      * @return string
      */
-    public function getMode()
+    public function getMode(): string
     {
         return $this->mode;
     }
@@ -59,9 +61,9 @@ class TexyMultiplier
      * @param string $name
      * @return static
      */
-    public function setMode($name)
+    public function setMode(string $name): self
     {
-        $this->mode = (string) $name;
+        $this->mode = $name;
         return $this;
     }
 
@@ -69,7 +71,7 @@ class TexyMultiplier
      * @param string|null $mode
      * @return Texy\Texy
      */
-    public function getTexy($mode = null)
+    public function getTexy(?string $mode = null): Texy\Texy
     {
         $mode = $mode === null ? $this->mode : $mode;
 
@@ -88,7 +90,7 @@ class TexyMultiplier
      * @param bool $singleLine
      * @return string
      */
-    public function process($text, $singleLine = false)
+    public function process(string $text, bool $singleLine = false): string
     {
         return $this->getTexy()->process($text, $singleLine);
     }
@@ -97,7 +99,7 @@ class TexyMultiplier
      * @param string $text
      * @return string
      */
-    public function processLine($text)
+    public function processLine(string $text): string
     {
         return $this->getTexy()->processLine($text);
     }
@@ -106,7 +108,7 @@ class TexyMultiplier
      * @param string $text
      * @return string
      */
-    public function processTypo($text)
+    public function processTypo(string $text): string
     {
         return $this->getTexy()->processTypo($text);
     }
@@ -114,7 +116,7 @@ class TexyMultiplier
     /**
      * @return int
      */
-    public function getOutputMode()
+    public function getOutputMode(): int
     {
         return $this->getTexy()->getOutputMode();
     }

@@ -4,6 +4,8 @@
  * Copyright (c) 2016 Petr Morávek (petr@pada.cz)
  */
 
+declare(strict_types = 1);
+
 namespace Nepada\Bridges\TexyLatte;
 
 use Latte;
@@ -28,7 +30,7 @@ class TexyModeMacro implements Latte\IMacro
     /**
      * @param Latte\Compiler $compiler
      */
-    public static function install(Latte\Compiler $compiler)
+    public static function install(Latte\Compiler $compiler): void
     {
         $me = new static;
         $compiler->addMacro('texyMode', $me);
@@ -36,6 +38,8 @@ class TexyModeMacro implements Latte\IMacro
 
     /**
      * Initializes before template parsing.
+     *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
      */
     public function initialize()
     {
@@ -45,6 +49,7 @@ class TexyModeMacro implements Latte\IMacro
     /**
      * Finishes template parsing.
      *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
      * @return string[] [prolog, epilog]
      */
     public function finalize()
@@ -52,11 +57,14 @@ class TexyModeMacro implements Latte\IMacro
         if ($this->isUsed) {
             return [static::class . '::validateTemplate($this);', ''];
         }
+
+        return [];
     }
 
     /**
      * New node is found. Returns FALSE to reject.
      *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
      * @param MacroNode $node
      * @return void
      * @throws Latte\CompileException
@@ -67,7 +75,9 @@ class TexyModeMacro implements Latte\IMacro
             throw new Latte\CompileException("Modifiers are not allowed in {{$node->name}}.");
         }
 
-        if ($node->tokenizer->fetchWord() === false) {
+        /** @var string|null|false $word */
+        $word = $node->tokenizer->fetchWord();
+        if ($word === false) {
             throw new Latte\CompileException("Missing mode name in {{$node->name}}.");
         } elseif ($node->tokenizer->fetchWord()) {
             throw new Latte\CompileException("Multiple arguments are not supported in {{$node->name}}.");
@@ -83,6 +93,7 @@ class TexyModeMacro implements Latte\IMacro
     /**
      * Node is closed.
      *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
      * @param MacroNode $node
      */
     public function nodeClosed(MacroNode $node)
@@ -94,7 +105,7 @@ class TexyModeMacro implements Latte\IMacro
      * @param Latte\Runtime\Template $template
      * @throws Nepada\Texy\InvalidStateException
      */
-    public static function validateTemplate(Latte\Runtime\Template $template)
+    public static function validateTemplate(Latte\Runtime\Template $template): void
     {
         if (!isset($template->global->texy) || !$template->global->texy instanceof TexyMultiplier) {
             $where = isset($template->global->control) && $template->global->control instanceof Nette\ComponentModel\IComponent

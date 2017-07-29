@@ -6,6 +6,8 @@
  * Copyright (c) 2016 Petr Morávek (petr@pada.cz)
  */
 
+declare(strict_types = 1);
+
 namespace NepadaTests\Bridges\TexyDI;
 
 use Nepada\Texy;
@@ -24,22 +26,13 @@ class TexyExtensionTest extends Tester\TestCase
     private $container;
 
 
-    public function setUp()
-    {
-        $configurator = new Nette\Configurator;
-        $configurator->setTempDirectory(TEMP_DIR);
-        $configurator->setDebugMode(true);
-        $configurator->addConfig(__DIR__ . '/fixtures/config.neon');
-        $this->container = $configurator->createContainer();
-    }
-
-    public function testServices()
+    public function testServices(): void
     {
         Assert::type(Texy\TexyMultiplier::class, $this->container->getService('texy.multiplier'));
         Assert::type(Texy\TexyFactory::class, $this->container->getService('texy.texyFactory'));
     }
 
-    public function testTemplate()
+    public function testTemplate(): void
     {
         /** @var Nette\Bridges\ApplicationLatte\Template $template */
         $template = $this->container->getByType(Nette\Application\UI\ITemplateFactory::class)->createTemplate();
@@ -54,6 +47,15 @@ class TexyExtensionTest extends Tester\TestCase
             __DIR__ . '/fixtures/test.html',
             (string) $template
         );
+    }
+
+    protected function setUp(): void
+    {
+        $configurator = new Nette\Configurator;
+        $configurator->setTempDirectory(TEMP_DIR);
+        $configurator->setDebugMode(true);
+        $configurator->addConfig(__DIR__ . '/fixtures/config.neon');
+        $this->container = $configurator->createContainer();
     }
 
 }

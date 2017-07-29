@@ -4,6 +4,8 @@
  * Copyright (c) 2016 Petr Morávek (petr@pada.cz)
  */
 
+declare(strict_types = 1);
+
 namespace Nepada\Texy;
 
 use Nepada;
@@ -20,7 +22,7 @@ class TexyFactory implements Nepada\Texy\ITexyFactory
     /**
      * @return Texy\Texy
      */
-    public function create()
+    public function create(): Texy\Texy
     {
         $texy = new Texy\Texy();
         $texy->setOutputMode(Texy\Texy::HTML5);

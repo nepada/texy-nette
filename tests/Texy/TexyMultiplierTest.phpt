@@ -6,6 +6,8 @@
  * Copyright (c) 2016 Petr Morávek (petr@pada.cz)
  */
 
+declare(strict_types = 1);
+
 namespace NepadaTests\Texy;
 
 use Nepada\Texy;
@@ -20,7 +22,7 @@ require_once __DIR__ . '/../bootstrap.php';
 class TexyMultiplierTest extends Tester\TestCase
 {
 
-    public function testMultiplier()
+    public function testMultiplier(): void
     {
         $multiplier = new Texy\TexyMultiplier('mode');
         Assert::same('mode', $multiplier->getMode());

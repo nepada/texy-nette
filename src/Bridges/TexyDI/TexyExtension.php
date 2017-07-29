@@ -4,6 +4,8 @@
  * Copyright (c) 2016 Petr Morávek (petr@pada.cz)
  */
 
+declare(strict_types = 1);
+
 namespace Nepada\Bridges\TexyDI;
 
 use Latte;
@@ -15,13 +17,16 @@ use Nette;
 class TexyExtension extends Nette\DI\CompilerExtension
 {
 
-    /** @var array */
+    /** @var mixed[] */
     public $defaults = [
         'defaultMode' => 'default',
         'factories' => [],
     ];
 
 
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
+     */
     public function loadConfiguration()
     {
         $this->defaults['factories']['default'] = $this->prefix('@texyFactory');
@@ -39,6 +44,9 @@ class TexyExtension extends Nette\DI\CompilerExtension
             ->setClass(Nepada\Bridges\TexyLatte\TexyFilters::class);
     }
 
+    /**
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
+     */
     public function beforeCompile()
     {
         $container = $this->getContainerBuilder();
