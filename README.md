@@ -2,6 +2,7 @@ Texy integration for Nette
 ==========================
 
 [![Build Status](https://travis-ci.org/nepada/texy-nette.svg?branch=master)](https://travis-ci.org/nepada/texy-nette)
+[![Coverage Status](https://coveralls.io/repos/github/nepada/texy-nette/badge.svg?branch=master)](https://coveralls.io/github/nepada/texy-nette?branch=master)
 [![Downloads this Month](https://img.shields.io/packagist/dm/nepada/texy-nette.svg)](https://packagist.org/packages/nepada/texy-nette)
 [![Latest stable](https://img.shields.io/packagist/v/nepada/texy-nette.svg)](https://packagist.org/packages/nepada/texy-nette)
 
