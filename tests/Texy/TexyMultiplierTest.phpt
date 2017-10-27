@@ -56,4 +56,4 @@ class TexyMultiplierTest extends Tester\TestCase
 }
 
 
-\run(new TexyMultiplierTest());
+(new TexyMultiplierTest())->run();

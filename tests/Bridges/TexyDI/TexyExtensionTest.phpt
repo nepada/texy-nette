@@ -64,4 +64,4 @@ class TexyExtensionTest extends Tester\TestCase
 }
 
 
-\run(new TexyExtensionTest());
+(new TexyExtensionTest())->run();

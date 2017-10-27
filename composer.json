@@ -23,7 +23,7 @@
         "latte/latte": "<2.4"
     },
     "require-dev": {
-        "nette/tester": "^1.7",
+        "nette/tester": "^2.0",
         "nette/bootstrap": "^2.4.1@dev || ^3.0@dev",
         "nette/di": "^2.4.7@dev || ^3.0@dev",
         "latte/latte": "^2.4@dev",
