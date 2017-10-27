@@ -34,7 +34,7 @@ class TexyMultiplierTest extends Tester\TestCase
         Assert::same('test', $multiplier->getMode());
 
         Assert::exception(
-            function () use ($multiplier) {
+            function () use ($multiplier): void {
                 $multiplier->getTexy();
             },
             Texy\InvalidStateException::class,
