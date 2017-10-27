@@ -38,7 +38,8 @@ class TexyExtension extends Nette\DI\CompilerExtension
             ->setClass(Texy\TexyFactory::class);
 
         $container->addDefinition($this->prefix('multiplier'))
-            ->setClass(Texy\TexyMultiplier::class, [$config['defaultMode']]);
+            ->setClass(Texy\TexyMultiplier::class)
+            ->setFactory(Texy\TexyMultiplier::class, [$config['defaultMode']]);
 
         $container->addDefinition($this->prefix('latteFilters'))
             ->setClass(Nepada\Bridges\TexyLatte\TexyFilters::class);
