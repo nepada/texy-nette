@@ -71,7 +71,7 @@ class TexyModeMacro implements Latte\IMacro
      */
     public function nodeOpened(MacroNode $node)
     {
-        if ($node->modifiers) {
+        if ($node->modifiers != '') { // intentionally !=
             throw new Latte\CompileException("Modifiers are not allowed in {{$node->name}}.");
         }
 
@@ -79,7 +79,11 @@ class TexyModeMacro implements Latte\IMacro
         $word = $node->tokenizer->fetchWord();
         if ($word === false) {
             throw new Latte\CompileException("Missing mode name in {{$node->name}}.");
-        } elseif ($node->tokenizer->fetchWord()) {
+        }
+
+        /** @var string|null|false $word */
+        $word = $node->tokenizer->fetchWord();
+        if ($word !== false) {
             throw new Latte\CompileException("Multiple arguments are not supported in {{$node->name}}.");
         }
 
