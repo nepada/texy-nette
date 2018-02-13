@@ -34,7 +34,7 @@ class TexyMultiplierTest extends Tester\TestCase
             "Missing Texy! factory for mode 'test'."
         );
 
-        $multiplier->addFactory('test', new TexyFactory);
+        $multiplier->addFactory('test', new TexyFactory());
         Assert::type(\Texy\Texy::class, $multiplier->getTexy());
         Assert::same(\Texy\Texy::HTML5, $multiplier->getOutputMode());
         Assert::same('AAA', $multiplier->processTypo('AAA'));
