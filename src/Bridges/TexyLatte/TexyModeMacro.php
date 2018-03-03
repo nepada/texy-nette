@@ -59,7 +59,7 @@ class TexyModeMacro implements Latte\IMacro
      */
     public function nodeOpened(MacroNode $node)
     {
-        if ($node->modifiers != '') { // intentionally !=
+        if ($node->modifiers !== '') {
             throw new Latte\CompileException("Modifiers are not allowed in {{$node->name}}.");
         }
 
