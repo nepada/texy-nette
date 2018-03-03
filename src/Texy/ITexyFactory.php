@@ -5,7 +5,6 @@ namespace Nepada\Texy;
 
 use Texy;
 
-
 interface ITexyFactory
 {
 

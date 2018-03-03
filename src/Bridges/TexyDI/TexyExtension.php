@@ -8,7 +8,6 @@ use Nepada;
 use Nepada\Texy;
 use Nette;
 
-
 class TexyExtension extends Nette\DI\CompilerExtension
 {
 
@@ -17,7 +16,6 @@ class TexyExtension extends Nette\DI\CompilerExtension
         'defaultMode' => 'default',
         'factories' => [],
     ];
-
 
     public function loadConfiguration(): void
     {

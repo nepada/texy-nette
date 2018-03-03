@@ -7,12 +7,10 @@ use Nepada;
 use Nette;
 use Texy;
 
-
 class TexyFactory implements Nepada\Texy\ITexyFactory
 {
 
     use Nette\SmartObject;
-
 
     public function create(): Texy\Texy
     {

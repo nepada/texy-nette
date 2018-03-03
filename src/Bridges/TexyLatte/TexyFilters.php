@@ -9,7 +9,6 @@ use Nepada\Texy\TexyMultiplier;
 use Nette;
 use Texy\Texy;
 
-
 class TexyFilters
 {
 
@@ -17,7 +16,6 @@ class TexyFilters
 
     /** @var TexyMultiplier */
     private $texyMultiplier;
-
 
     public function __construct(TexyMultiplier $texyMultiplier)
     {

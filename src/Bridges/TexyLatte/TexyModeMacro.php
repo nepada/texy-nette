@@ -9,7 +9,6 @@ use Nepada;
 use Nepada\Texy\TexyMultiplier;
 use Nette;
 
-
 /**
  * Macro {texyMode ...}
  */
@@ -20,7 +19,6 @@ class TexyModeMacro implements Latte\IMacro
 
     /** @var bool */
     private $isUsed;
-
 
     public static function install(Latte\Compiler $compiler): void
     {

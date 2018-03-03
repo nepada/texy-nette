@@ -6,7 +6,6 @@ namespace Nepada\Texy;
 use Nette;
 use Texy;
 
-
 /**
  * @property-read Texy\Texy $texy
  * @property-read int $outputMode
@@ -25,7 +24,6 @@ class TexyMultiplier
 
     /** @var string */
     private $mode;
-
 
     public function __construct(string $defaultMode)
     {
