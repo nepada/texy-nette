@@ -14,9 +14,6 @@ class TexyFactory implements Nepada\Texy\ITexyFactory
     use Nette\SmartObject;
 
 
-    /**
-     * @return Texy\Texy
-     */
     public function create(): Texy\Texy
     {
         $texy = new Texy\Texy();

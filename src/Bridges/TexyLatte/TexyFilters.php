@@ -19,20 +19,11 @@ class TexyFilters
     private $texyMultiplier;
 
 
-    /**
-     * @param TexyMultiplier $texyMultiplier
-     */
     public function __construct(TexyMultiplier $texyMultiplier)
     {
         $this->texyMultiplier = $texyMultiplier;
     }
 
-    /**
-     * @param FilterInfo $filterInfo
-     * @param string $text
-     * @param bool $singleLine
-     * @return string
-     */
     public function process(FilterInfo $filterInfo, string $text, bool $singleLine = false): string
     {
         if (!in_array($filterInfo->contentType, [null, Engine::CONTENT_TEXT, Engine::CONTENT_HTML, Engine::CONTENT_XHTML, Engine::CONTENT_XML], true)) {
@@ -43,11 +34,6 @@ class TexyFilters
         return $this->texyMultiplier->process($text, $singleLine);
     }
 
-    /**
-     * @param FilterInfo $filterInfo
-     * @param string $text
-     * @return string
-     */
     public function processLine(FilterInfo $filterInfo, string $text): string
     {
         if (!in_array($filterInfo->contentType, [null, Engine::CONTENT_TEXT, Engine::CONTENT_HTML, Engine::CONTENT_XHTML, Engine::CONTENT_XML], true)) {
@@ -58,11 +44,6 @@ class TexyFilters
         return $this->texyMultiplier->processLine($text);
     }
 
-    /**
-     * @param FilterInfo $filterInfo
-     * @param string $text
-     * @return string
-     */
     public function processTypo(FilterInfo $filterInfo, string $text): string
     {
         if (!in_array($filterInfo->contentType, [null, Engine::CONTENT_TEXT, Engine::CONTENT_HTML, Engine::CONTENT_XHTML, Engine::CONTENT_XML], true)) {

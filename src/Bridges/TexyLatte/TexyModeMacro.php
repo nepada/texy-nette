@@ -22,9 +22,6 @@ class TexyModeMacro implements Latte\IMacro
     private $isUsed;
 
 
-    /**
-     * @param Latte\Compiler $compiler
-     */
     public static function install(Latte\Compiler $compiler): void
     {
         $me = new static();

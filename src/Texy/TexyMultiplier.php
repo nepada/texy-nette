@@ -27,26 +27,16 @@ class TexyMultiplier
     private $mode;
 
 
-    /**
-     * @param string $defaultMode
-     */
     public function __construct(string $defaultMode)
     {
         $this->setMode($defaultMode);
     }
 
-    /**
-     * @param string $name
-     * @param ITexyFactory $factory
-     */
     public function addFactory(string $name, ITexyFactory $factory): void
     {
         $this->factories[$name] = $factory;
     }
 
-    /**
-     * @return string
-     */
     public function getMode(): string
     {
         return $this->mode;
@@ -62,10 +52,6 @@ class TexyMultiplier
         return $this;
     }
 
-    /**
-     * @param string|null $mode
-     * @return Texy\Texy
-     */
     public function getTexy(?string $mode = null): Texy\Texy
     {
         $mode = $mode === null ? $this->mode : $mode;
@@ -80,37 +66,21 @@ class TexyMultiplier
         return $this->texy[$mode];
     }
 
-    /**
-     * @param string $text
-     * @param bool $singleLine
-     * @return string
-     */
     public function process(string $text, bool $singleLine = false): string
     {
         return $this->getTexy()->process($text, $singleLine);
     }
 
-    /**
-     * @param string $text
-     * @return string
-     */
     public function processLine(string $text): string
     {
         return $this->getTexy()->processLine($text);
     }
 
-    /**
-     * @param string $text
-     * @return string
-     */
     public function processTypo(string $text): string
     {
         return $this->getTexy()->processTypo($text);
     }
 
-    /**
-     * @return int
-     */
     public function getOutputMode(): int
     {
         return $this->getTexy()->getOutputMode();

@@ -9,9 +9,6 @@ use Texy;
 interface ITexyFactory
 {
 
-    /**
-     * @return Texy\Texy
-     */
     public function create(): Texy\Texy;
 
 }
