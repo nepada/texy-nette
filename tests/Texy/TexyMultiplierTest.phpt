@@ -3,10 +3,12 @@ declare(strict_types = 1);
 
 namespace NepadaTests\Texy;
 
-use Nepada\Texy;
+use Nepada\Texy\InvalidStateException;
 use Nepada\Texy\TexyFactory;
+use Nepada\Texy\TexyMultiplier;
 use Tester;
 use Tester\Assert;
+use Texy\Texy;
 
 require_once __DIR__ . '/../bootstrap.php';
 
@@ -19,7 +21,7 @@ class TexyMultiplierTest extends Tester\TestCase
 
     public function testMultiplier(): void
     {
-        $multiplier = new Texy\TexyMultiplier('mode');
+        $multiplier = new TexyMultiplier('mode');
         Assert::same('mode', $multiplier->getMode());
 
         $multiplier->setMode('test');
@@ -29,13 +31,13 @@ class TexyMultiplierTest extends Tester\TestCase
             function () use ($multiplier): void {
                 $multiplier->getTexy();
             },
-            Texy\InvalidStateException::class,
+            InvalidStateException::class,
             "Missing Texy! factory for mode 'test'."
         );
 
         $multiplier->addFactory('test', new TexyFactory());
-        Assert::type(\Texy\Texy::class, $multiplier->getTexy());
-        Assert::same(\Texy\Texy::HTML5, $multiplier->getOutputMode());
+        Assert::type(Texy::class, $multiplier->getTexy());
+        Assert::same(Texy::HTML5, $multiplier->getOutputMode());
         Assert::same('AAA', $multiplier->processTypo('AAA'));
         Assert::same('AAA', $multiplier->processLine('AAA'));
         Assert::same("<p>AAA</p>\n", $multiplier->process('AAA'));
