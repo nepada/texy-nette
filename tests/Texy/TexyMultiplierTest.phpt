@@ -3,7 +3,6 @@ declare(strict_types = 1);
 
 namespace NepadaTests\Texy;
 
-use Nepada\Texy\InvalidStateException;
 use Nepada\Texy\TexyFactory;
 use Nepada\Texy\TexyMultiplier;
 use Tester;
@@ -31,7 +30,7 @@ class TexyMultiplierTest extends Tester\TestCase
             function () use ($multiplier): void {
                 $multiplier->getTexy();
             },
-            InvalidStateException::class,
+            \InvalidArgumentException::class,
             "Missing Texy! factory for mode 'test'."
         );
 

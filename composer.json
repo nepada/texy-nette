@@ -48,10 +48,7 @@
         "psr-4": {
             "Nepada\\Bridges\\": "src/Bridges/",
             "Nepada\\Texy\\": "src/Texy/"
-        },
-        "classmap": [
-            "src/Texy/exceptions.php"
-        ]
+        }
     },
     "extra": {
         "branch-alias": {

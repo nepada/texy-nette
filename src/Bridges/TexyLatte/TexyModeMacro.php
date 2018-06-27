@@ -5,7 +5,6 @@ namespace Nepada\Bridges\TexyLatte;
 
 use Latte;
 use Latte\MacroNode;
-use Nepada;
 use Nepada\Texy\TexyMultiplier;
 use Nette;
 
@@ -55,7 +54,6 @@ class TexyModeMacro implements Latte\IMacro
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
      * @param MacroNode $node
      * @return void
-     * @throws Latte\CompileException
      */
     public function nodeOpened(MacroNode $node)
     {
@@ -92,10 +90,6 @@ class TexyModeMacro implements Latte\IMacro
         $node->closingCode = '<?php $this->global->texy->setMode(array_pop($this->global->texyModeStack)); ?>';
     }
 
-    /**
-     * @param Latte\Runtime\Template $template
-     * @throws Nepada\Texy\InvalidStateException
-     */
     public static function validateTemplate(Latte\Runtime\Template $template): void
     {
         if (!isset($template->global->texy) || !$template->global->texy instanceof TexyMultiplier) {
@@ -103,7 +97,7 @@ class TexyModeMacro implements Latte\IMacro
                 ? ' in component ' . get_class($template->global->control) . '(' . $template->global->control->getName() . ')'
                 : null;
 
-            throw new Nepada\Texy\InvalidStateException("TexyMultiplier instance not found{$where}.");
+            throw new \LogicException("TexyMultiplier instance not found{$where}.");
         }
     }
 
