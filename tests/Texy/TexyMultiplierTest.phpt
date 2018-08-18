@@ -5,7 +5,7 @@ namespace NepadaTests\Texy;
 
 use Nepada\Texy\TexyFactory;
 use Nepada\Texy\TexyMultiplier;
-use Tester;
+use NepadaTests\TestCase;
 use Tester\Assert;
 use Texy\Texy;
 
@@ -15,7 +15,7 @@ require_once __DIR__ . '/../bootstrap.php';
 /**
  * @testCase
  */
-class TexyMultiplierTest extends Tester\TestCase
+class TexyMultiplierTest extends TestCase
 {
 
     public function testMultiplier(): void

@@ -4,8 +4,8 @@ declare(strict_types = 1);
 namespace NepadaTests\Bridges\TexyDI;
 
 use Nepada\Texy;
+use NepadaTests\TestCase;
 use Nette;
-use Tester;
 use Tester\Assert;
 
 require_once __DIR__ . '/../../bootstrap.php';
@@ -14,7 +14,7 @@ require_once __DIR__ . '/../../bootstrap.php';
 /**
  * @testCase
  */
-class TexyExtensionTest extends Tester\TestCase
+class TexyExtensionTest extends TestCase
 {
 
     /** @var Nette\DI\Container */
