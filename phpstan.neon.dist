@@ -21,3 +21,9 @@ parameters:
         -
             message: '#Return type \(void\) of method Nepada\\Bridges\\TexyLatte\\TexyModeMacro::nodeOpened\(\) should be compatible#' # intended
             path: %currentWorkingDirectory%/src/Bridges/TexyLatte/TexyModeMacro.php
+
+        -
+            message: '#Call to an undefined method Nette\\DI\\Definitions\\Definition::addSetup\(\)#' # it's actually ServiceDefinition, cannot use phpdoc hint because of BC with Nette 2.4
+            path: %currentWorkingDirectory%/src/Bridges/TexyDI/TexyExtension.php
+
+    reportUnmatchedIgnoredErrors: false

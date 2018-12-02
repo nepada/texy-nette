@@ -25,22 +25,24 @@ class TexyExtension extends Nette\DI\CompilerExtension
         $config = $this->validateConfig($this->defaults);
 
         $container->addDefinition($this->prefix('texyFactory'))
-            ->setClass(Texy\TexyFactory::class);
+            ->setType(Texy\TexyFactory::class);
 
         $container->addDefinition($this->prefix('multiplier'))
-            ->setClass(Texy\TexyMultiplier::class)
+            ->setType(Texy\TexyMultiplier::class)
             ->setFactory(Texy\TexyMultiplier::class, [$config['defaultMode']]);
 
         $container->addDefinition($this->prefix('latteFilters'))
-            ->setClass(Nepada\Bridges\TexyLatte\TexyFilters::class);
+            ->setType(Nepada\Bridges\TexyLatte\TexyFilters::class);
     }
 
     public function beforeCompile(): void
     {
         $container = $this->getContainerBuilder();
+        /** @var mixed[] $config */
+        $config = $this->getConfig();
 
         $multiplier = $container->getDefinition($this->prefix('multiplier'));
-        foreach ($this->config['factories'] as $name => $factory) {
+        foreach ($config['factories'] as $name => $factory) {
             $multiplier->addSetup('addFactory', [$name, $factory]);
         }
 
