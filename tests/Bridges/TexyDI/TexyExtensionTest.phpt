@@ -28,13 +28,15 @@ class TexyExtensionTest extends TestCase
 
     public function testTemplate(): void
     {
+        $templateFile = __DIR__ . '/fixtures/test.latte';
+
         /** @var Nette\Bridges\ApplicationLatte\Template $template */
         $template = $this->container->getByType(Nette\Application\UI\ITemplateFactory::class)->createTemplate();
-        $template->setFile(__DIR__ . '/fixtures/test.latte');
+        $template->setFile($templateFile);
 
         Assert::matchFile(
             __DIR__ . '/fixtures/test.phtml',
-            $template->getLatte()->compile($template->getFile())
+            $template->getLatte()->compile($templateFile)
         );
 
         Assert::matchFile(
