@@ -16,3 +16,6 @@ texy:
 
 application:
     scanDirs: false
+
+di:
+    debugger: false
