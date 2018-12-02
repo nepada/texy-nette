@@ -61,13 +61,13 @@ class TexyModeMacro implements Latte\IMacro
 
         /** @var string|false|null $word */
         $word = $node->tokenizer->fetchWord();
-        if ($word === false) {
+        if ($word === null || $word === false) { // `false` is BC with Nette 2.4
             throw new Latte\CompileException("Missing mode name in {{$node->name}}.");
         }
 
         /** @var string|false|null $word */
         $word = $node->tokenizer->fetchWord();
-        if ($word !== false) {
+        if ($word !== null && $word !== false) { // `false` is BC with Nette 2.4
             throw new Latte\CompileException("Multiple arguments are not supported in {{$node->name}}.");
         }
 
