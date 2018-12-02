@@ -36,10 +36,9 @@ class TexyModeMacro implements Latte\IMacro
     /**
      * Finishes template parsing.
      *
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
      * @return string[] [prolog, epilog]
      */
-    public function finalize()
+    public function finalize(): array
     {
         if ($this->isUsed) {
             return [static::class . '::validateTemplate($this);', ''];
@@ -51,11 +50,9 @@ class TexyModeMacro implements Latte\IMacro
     /**
      * New node is found. Returns FALSE to reject.
      *
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
      * @param MacroNode $node
-     * @return void
      */
-    public function nodeOpened(MacroNode $node)
+    public function nodeOpened(MacroNode $node): void
     {
         if ($node->modifiers !== '') {
             throw new Latte\CompileException("Modifiers are not allowed in {{$node->name}}.");
