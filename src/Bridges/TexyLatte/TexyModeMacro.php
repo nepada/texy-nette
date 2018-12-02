@@ -71,7 +71,7 @@ class TexyModeMacro implements Latte\IMacro
         }
 
         $this->isUsed = true;
-        $node->isEmpty = false;
+        $node->empty = false;
         $node->tokenizer->reset();
         $node->openingCode = Latte\PhpWriter::using($node)
             ->write('<?php $this->global->texyModeStack[] = $this->global->texy->getMode(); $this->global->texy->setMode(%node.word); ?>');
