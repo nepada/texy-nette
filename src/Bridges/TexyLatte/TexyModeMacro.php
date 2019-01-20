@@ -51,6 +51,7 @@ class TexyModeMacro implements Latte\IMacro
      * New node is found. Returns FALSE to reject.
      *
      * @param MacroNode $node
+     * @throws Latte\CompileException
      */
     public function nodeOpened(MacroNode $node): void
     {

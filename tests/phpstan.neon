@@ -6,8 +6,14 @@ includes:
 
 parameters:
     exceptionRules:
-        checkedExceptions:
-            - RuntimeException
-        ignoredExceptions:
+        uncheckedExceptions:
             - LogicException
             - Nette\InvalidStateException
+
+    ignoreErrors:
+        -
+            message: '#PHPDoc tag @throws with type Latte\\CompileException is not compatible with parent#' # intended
+            path: %currentWorkingDirectory%/src/Bridges/TexyLatte/TexyModeMacro.php
+        -
+            message: '#Return type \(void\) of method Nepada\\Bridges\\TexyLatte\\TexyModeMacro::nodeOpened\(\) should be compatible#' # intended
+            path: %currentWorkingDirectory%/src/Bridges/TexyLatte/TexyModeMacro.php
