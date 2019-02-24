@@ -56,12 +56,8 @@ class TexyExtension extends Nette\DI\CompilerExtension
         if (!class_exists(Nepada\TemplateFactory\TemplateConfigurator::class)) {
             return;
         }
-        $templateConfigurator = $container->getByType(Nepada\TemplateFactory\TemplateConfigurator::class);
-        if ($templateConfigurator === null) {
-            throw new \LogicException('Could not find TemplateConfigurator service, did you register TemplateFactoryExtension in your configuration?');
-        }
-        $container->getDefinition($templateConfigurator)
-            ->addSetup('addFilter', ['texy', [$this->prefix('@latteFilters'), 'process']])
+        $templateConfigurator = $container->getDefinitionByType(Nepada\TemplateFactory\TemplateConfigurator::class);
+        $templateConfigurator->addSetup('addFilter', ['texy', [$this->prefix('@latteFilters'), 'process']])
             ->addSetup('addFilter', ['texyLine', [$this->prefix('@latteFilters'), 'processLine']])
             ->addSetup('addFilter', ['texyTypo', [$this->prefix('@latteFilters'), 'processTypo']])
             ->addSetup('addProvider', ['texy', $this->prefix('@multiplier')])
