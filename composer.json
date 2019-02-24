@@ -17,7 +17,7 @@
     "require": {
         "php": ">=7.1.0",
         "nette/utils": "^2.4@dev || ^3.0@dev",
-        "texy/texy": "^2.8@dev"
+        "texy/texy": "^2.8@dev || ^3.0@dev"
     },
     "conflict": {
         "latte/latte": "<2.4"
