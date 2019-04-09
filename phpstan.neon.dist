@@ -13,6 +13,7 @@ parameters:
         uncheckedExceptions:
             - LogicException
             - Nette\InvalidStateException
+            - Nette\MemberAccessException
 
     ignoreErrors:
         -
