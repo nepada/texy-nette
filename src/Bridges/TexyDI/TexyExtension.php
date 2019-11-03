@@ -11,25 +11,30 @@ use Nette;
 class TexyExtension extends Nette\DI\CompilerExtension
 {
 
-    /** @var mixed[] */
-    public $defaults = [
-        'defaultMode' => 'default',
-        'factories' => [],
-    ];
+    private const DEFAULT_MODE = 'default';
+
+    public function getConfigSchema(): Nette\Schema\Schema
+    {
+        return Nette\Schema\Expect::structure([
+            'defaultMode' => Nette\Schema\Expect::string(self::DEFAULT_MODE),
+            'factories' => Nette\Schema\Expect::array()->default([
+                self::DEFAULT_MODE => $this->prefix('@texyFactory'),
+            ]),
+        ]);
+    }
 
     public function loadConfiguration(): void
     {
-        $this->defaults['factories']['default'] = $this->prefix('@texyFactory');
-
         $container = $this->getContainerBuilder();
-        $config = $this->validateConfig($this->defaults);
+        /** @var \stdClass $config */
+        $config = $this->getConfig();
 
         $container->addDefinition($this->prefix('texyFactory'))
             ->setType(Texy\TexyFactory::class);
 
         $container->addDefinition($this->prefix('multiplier'))
             ->setType(Texy\TexyMultiplier::class)
-            ->setFactory(Texy\TexyMultiplier::class, [$config['defaultMode']]);
+            ->setFactory(Texy\TexyMultiplier::class, [$config->defaultMode]);
 
         $container->addDefinition($this->prefix('latteFilters'))
             ->setType(Nepada\Bridges\TexyLatte\TexyFilters::class);
@@ -38,12 +43,12 @@ class TexyExtension extends Nette\DI\CompilerExtension
     public function beforeCompile(): void
     {
         $container = $this->getContainerBuilder();
-        /** @var mixed[] $config */
+        /** @var \stdClass $config */
         $config = $this->getConfig();
 
         /** @var Nette\DI\ServiceDefinition $multiplier */
         $multiplier = $container->getDefinition($this->prefix('multiplier'));
-        foreach ($config['factories'] as $name => $factory) {
+        foreach ($config->factories as $name => $factory) {
             $multiplier->addSetup('addFactory', [$name, $factory]);
         }
 
