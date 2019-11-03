@@ -23,10 +23,10 @@
         "latte/latte": "<2.4"
     },
     "require-dev": {
-        "nette/tester": "^2.1",
-        "xificurk/phpstan-shim": "^0.11",
+        "nette/tester": "^2.3",
+        "xificurk/phpstan-shim": "^0.11.8",
         "jakub-onderka/php-parallel-lint": "^1.0",
-        "nepada/coding-standard": "^6.0.0",
+        "nepada/coding-standard": "^6.1.0",
         "nette/bootstrap": "^2.4.1@dev || ^3.0@dev",
         "nette/di": "^2.4.10@dev || ^3.0@dev",
         "latte/latte": "^2.4@dev",
