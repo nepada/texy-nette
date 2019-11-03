@@ -59,15 +59,13 @@ class TexyModeMacro implements Latte\IMacro
             throw new Latte\CompileException("Modifiers are not allowed in {{$node->name}}.");
         }
 
-        /** @var string|false|null $word */
         $word = $node->tokenizer->fetchWord();
-        if ($word === null || $word === false) { // `false` is BC with Nette 2.4
+        if ($word === null) {
             throw new Latte\CompileException("Missing mode name in {{$node->name}}.");
         }
 
-        /** @var string|false|null $word */
         $word = $node->tokenizer->fetchWord();
-        if ($word !== null && $word !== false) { // `false` is BC with Nette 2.4
+        if ($word !== null) {
             throw new Latte\CompileException("Multiple arguments are not supported in {{$node->name}}.");
         }
 

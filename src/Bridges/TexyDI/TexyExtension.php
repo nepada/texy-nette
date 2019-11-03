@@ -41,6 +41,7 @@ class TexyExtension extends Nette\DI\CompilerExtension
         /** @var mixed[] $config */
         $config = $this->getConfig();
 
+        /** @var Nette\DI\ServiceDefinition $multiplier */
         $multiplier = $container->getDefinition($this->prefix('multiplier'));
         foreach ($config['factories'] as $name => $factory) {
             $multiplier->addSetup('addFactory', [$name, $factory]);
@@ -58,6 +59,7 @@ class TexyExtension extends Nette\DI\CompilerExtension
         if (!class_exists(Nepada\TemplateFactory\TemplateConfigurator::class)) {
             return;
         }
+        /** @var Nette\DI\ServiceDefinition $templateConfigurator */
         $templateConfigurator = $container->getDefinitionByType(Nepada\TemplateFactory\TemplateConfigurator::class);
         $templateConfigurator->addSetup('addFilter', ['texy', [$this->prefix('@latteFilters'), 'process']])
             ->addSetup('addFilter', ['texyLine', [$this->prefix('@latteFilters'), 'processLine']])
