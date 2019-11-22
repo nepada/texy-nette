@@ -54,8 +54,8 @@ class TexyMultiplier
     {
         $mode = $mode ?? $this->mode;
 
-        if (!isset($this->texy[$mode])) {
-            if (!isset($this->factories[$mode])) {
+        if (! isset($this->texy[$mode])) {
+            if (! isset($this->factories[$mode])) {
                 throw new \InvalidArgumentException("Missing Texy! factory for mode '{$mode}'.");
             }
             $this->texy[$mode] = $this->factories[$mode]->create();

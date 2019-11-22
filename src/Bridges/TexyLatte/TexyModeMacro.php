@@ -88,7 +88,7 @@ class TexyModeMacro implements Latte\IMacro
 
     public static function validateTemplate(Latte\Runtime\Template $template): void
     {
-        if (!isset($template->global->texy) || !$template->global->texy instanceof TexyMultiplier) {
+        if (! isset($template->global->texy) || ! $template->global->texy instanceof TexyMultiplier) {
             $where = isset($template->global->control) && $template->global->control instanceof Nette\ComponentModel\IComponent
                 ? ' in component ' . get_class($template->global->control) . '(' . $template->global->control->getName() . ')'
                 : null;

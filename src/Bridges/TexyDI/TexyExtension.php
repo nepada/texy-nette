@@ -52,7 +52,7 @@ class TexyExtension extends Nette\DI\CompilerExtension
             $multiplier->addSetup('addFactory', [$name, $factory]);
         }
 
-        if (!class_exists(Latte\Engine::class)) {
+        if (! class_exists(Latte\Engine::class)) {
             return;
         }
         $latteExtension = $this->compiler->getExtensions(Nette\Bridges\ApplicationDI\LatteExtension::class);
@@ -61,7 +61,7 @@ class TexyExtension extends Nette\DI\CompilerExtension
         }
         reset($latteExtension)->addMacro(Nepada\Bridges\TexyLatte\TexyModeMacro::class . '::install');
 
-        if (!class_exists(Nepada\TemplateFactory\TemplateConfigurator::class)) {
+        if (! class_exists(Nepada\TemplateFactory\TemplateConfigurator::class)) {
             return;
         }
         /** @var Nette\DI\ServiceDefinition $templateConfigurator */
