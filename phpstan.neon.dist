@@ -1,13 +1,13 @@
 includes:
-    - phar://phpstan.phar/vendor/pepakriz/phpstan-exception-rules/extension.neon
-    - phar://phpstan.phar/vendor/phpstan/phpstan-nette/extension.neon
-    - phar://phpstan.phar/vendor/phpstan/phpstan-nette/rules.neon
-    - phar://phpstan.phar/vendor/phpstan/phpstan-strict-rules/rules.neon
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+    - vendor/pepakriz/phpstan-exception-rules/extension.neon
+    - vendor/phpstan/phpstan-nette/extension.neon
+    - vendor/phpstan/phpstan-nette/rules.neon
 
 parameters:
     level: max
     paths:
-        - %currentWorkingDirectory%/src
+        - src
 
     exceptionRules:
         uncheckedExceptions:
@@ -16,9 +16,9 @@ parameters:
             - Nette\MemberAccessException
 
     ignoreErrors:
-        -
-            message: '#PHPDoc tag @throws with type Latte\\CompileException is not compatible with parent#' # intended
-            path: %currentWorkingDirectory%/src/Bridges/TexyLatte/TexyModeMacro.php
-        -
-            message: '#Return type \(void\) of method Nepada\\Bridges\\TexyLatte\\TexyModeMacro::nodeOpened\(\) should be compatible#' # intended
-            path: %currentWorkingDirectory%/src/Bridges/TexyLatte/TexyModeMacro.php
+        - # intended
+            message: '#PHPDoc tag @throws with type Latte\\CompileException is not compatible with parent#'
+            path: src/Bridges/TexyLatte/TexyModeMacro.php
+        - # intended
+            message: '#Return type \(void\) of method Nepada\\Bridges\\TexyLatte\\TexyModeMacro::nodeOpened\(\) should be compatible#'
+            path: src/Bridges/TexyLatte/TexyModeMacro.php
