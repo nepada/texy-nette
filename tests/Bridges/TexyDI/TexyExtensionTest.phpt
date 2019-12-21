@@ -35,12 +35,12 @@ class TexyExtensionTest extends TestCase
 
         Assert::matchFile(
             __DIR__ . '/fixtures/test.phtml',
-            $template->getLatte()->compile($templateFile)
+            $template->getLatte()->compile($templateFile),
         );
 
         Assert::matchFile(
             __DIR__ . '/fixtures/test.html',
-            (string) $template
+            (string) $template,
         );
     }
 

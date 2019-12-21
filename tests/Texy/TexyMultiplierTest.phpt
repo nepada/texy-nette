@@ -31,7 +31,7 @@ class TexyMultiplierTest extends TestCase
                 $multiplier->getTexy();
             },
             \InvalidArgumentException::class,
-            "Missing Texy! factory for mode 'test'."
+            "Missing Texy! factory for mode 'test'.",
         );
 
         $multiplier->addFactory('test', new TexyFactory());
