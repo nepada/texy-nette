@@ -26,8 +26,8 @@ class TexyExtension extends Nette\DI\CompilerExtension
     public function loadConfiguration(): void
     {
         $container = $this->getContainerBuilder();
-        /** @var \stdClass $config */
         $config = $this->getConfig();
+        assert($config instanceof \stdClass);
 
         $container->addDefinition($this->prefix('texyFactory'))
             ->setType(Texy\TexyFactory::class);
@@ -43,11 +43,11 @@ class TexyExtension extends Nette\DI\CompilerExtension
     public function beforeCompile(): void
     {
         $container = $this->getContainerBuilder();
-        /** @var \stdClass $config */
         $config = $this->getConfig();
+        assert($config instanceof \stdClass);
 
-        /** @var Nette\DI\ServiceDefinition $multiplier */
         $multiplier = $container->getDefinition($this->prefix('multiplier'));
+        assert($multiplier instanceof Nette\DI\ServiceDefinition);
         foreach ($config->factories as $name => $factory) {
             $multiplier->addSetup('addFactory', [$name, $factory]);
         }
@@ -64,8 +64,8 @@ class TexyExtension extends Nette\DI\CompilerExtension
         if (! class_exists(Nepada\TemplateFactory\TemplateConfigurator::class)) {
             return;
         }
-        /** @var Nette\DI\ServiceDefinition $templateConfigurator */
         $templateConfigurator = $container->getDefinitionByType(Nepada\TemplateFactory\TemplateConfigurator::class);
+        assert($templateConfigurator instanceof Nette\DI\ServiceDefinition);
         $templateConfigurator->addSetup('addFilter', ['texy', [$this->prefix('@latteFilters'), 'process']])
             ->addSetup('addFilter', ['texyLine', [$this->prefix('@latteFilters'), 'processLine']])
             ->addSetup('addFilter', ['texyTypo', [$this->prefix('@latteFilters'), 'processTypo']])
