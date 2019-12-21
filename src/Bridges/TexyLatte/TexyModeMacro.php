@@ -11,7 +11,7 @@ use Nette;
 /**
  * Macro {texyMode ...}
  */
-class TexyModeMacro implements Latte\IMacro
+final class TexyModeMacro implements Latte\IMacro
 {
 
     use Nette\SmartObject;
