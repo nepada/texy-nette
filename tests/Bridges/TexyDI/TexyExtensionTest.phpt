@@ -17,8 +17,7 @@ require_once __DIR__ . '/../../bootstrap.php';
 class TexyExtensionTest extends TestCase
 {
 
-    /** @var Nette\DI\Container */
-    private $container;
+    private Nette\DI\Container $container;
 
     public function testServices(): void
     {

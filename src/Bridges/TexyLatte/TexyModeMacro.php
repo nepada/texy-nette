@@ -16,8 +16,7 @@ final class TexyModeMacro implements Latte\IMacro
 
     use Nette\SmartObject;
 
-    /** @var bool */
-    private $isUsed;
+    private bool $isUsed = false;
 
     public static function install(Latte\Compiler $compiler): void
     {

@@ -17,13 +17,12 @@ class TexyMultiplier
     use Nette\SmartObject;
 
     /** @var ITexyFactory[] */
-    private $factories;
+    private array $factories = [];
 
     /** @var Texy\Texy[] */
-    private $texy;
+    private array $texy = [];
 
-    /** @var string */
-    private $mode;
+    private string $mode;
 
     public function __construct(string $defaultMode)
     {

@@ -14,8 +14,7 @@ class TexyFilters
 
     use Nette\SmartObject;
 
-    /** @var TexyMultiplier */
-    private $texyMultiplier;
+    private TexyMultiplier $texyMultiplier;
 
     public function __construct(TexyMultiplier $texyMultiplier)
     {
