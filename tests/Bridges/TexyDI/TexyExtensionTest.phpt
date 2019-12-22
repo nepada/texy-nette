@@ -29,8 +29,8 @@ class TexyExtensionTest extends TestCase
     {
         $templateFile = __DIR__ . '/fixtures/test.latte';
 
+        /** @var Nette\Bridges\ApplicationLatte\Template $template */
         $template = $this->container->getByType(Nette\Application\UI\ITemplateFactory::class)->createTemplate();
-        assert($template instanceof Nette\Bridges\ApplicationLatte\Template);
         $template->setFile($templateFile);
 
         Assert::matchFile(
