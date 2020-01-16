@@ -8,7 +8,6 @@ use Texy;
 
 /**
  * @property-read Texy\Texy $texy
- * @property-read int $outputMode
  * @property string $mode
  */
 class TexyMultiplier
@@ -76,11 +75,6 @@ class TexyMultiplier
     public function processTypo(string $text): string
     {
         return $this->getTexy()->processTypo($text);
-    }
-
-    public function getOutputMode(): int
-    {
-        return $this->getTexy()->getOutputMode();
     }
 
 }
