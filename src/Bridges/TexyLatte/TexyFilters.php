@@ -7,7 +7,6 @@ use Latte\Engine;
 use Latte\Runtime\FilterInfo;
 use Nepada\Texy\TexyMultiplier;
 use Nette;
-use Texy\Texy;
 
 class TexyFilters
 {
@@ -23,27 +22,27 @@ class TexyFilters
 
     public function process(FilterInfo $filterInfo, string $text, bool $singleLine = false): string
     {
-        if (! in_array($filterInfo->contentType, [null, Engine::CONTENT_TEXT, Engine::CONTENT_HTML, Engine::CONTENT_XHTML, Engine::CONTENT_XML], true)) {
+        if (! in_array($filterInfo->contentType, [null, Engine::CONTENT_TEXT, Engine::CONTENT_HTML], true)) {
             trigger_error('Filter |texy used with incompatible type ' . strtoupper($filterInfo->contentType), E_USER_WARNING);
         }
 
-        $filterInfo->contentType = ($this->texyMultiplier->getOutputMode() & Texy::XML) !== 0 ? Engine::CONTENT_XHTML : Engine::CONTENT_HTML;
+        $filterInfo->contentType = Engine::CONTENT_HTML;
         return $this->texyMultiplier->process($text, $singleLine);
     }
 
     public function processLine(FilterInfo $filterInfo, string $text): string
     {
-        if (! in_array($filterInfo->contentType, [null, Engine::CONTENT_TEXT, Engine::CONTENT_HTML, Engine::CONTENT_XHTML, Engine::CONTENT_XML], true)) {
+        if (! in_array($filterInfo->contentType, [null, Engine::CONTENT_TEXT, Engine::CONTENT_HTML], true)) {
             trigger_error('Filter |texyLine used with incompatible type ' . strtoupper($filterInfo->contentType), E_USER_WARNING);
         }
 
-        $filterInfo->contentType = ($this->texyMultiplier->getOutputMode() & Texy::XML) !== 0 ? Engine::CONTENT_XHTML : Engine::CONTENT_HTML;
+        $filterInfo->contentType = Engine::CONTENT_HTML;
         return $this->texyMultiplier->processLine($text);
     }
 
     public function processTypo(FilterInfo $filterInfo, string $text): string
     {
-        if (! in_array($filterInfo->contentType, [null, Engine::CONTENT_TEXT, Engine::CONTENT_HTML, Engine::CONTENT_XHTML, Engine::CONTENT_XML], true)) {
+        if (! in_array($filterInfo->contentType, [null, Engine::CONTENT_TEXT, Engine::CONTENT_HTML], true)) {
             trigger_error('Filter |texyTypo used with incompatible type ' . strtoupper($filterInfo->contentType), E_USER_WARNING);
         }
 
