@@ -15,7 +15,6 @@ class TexyFactory implements Nepada\Texy\ITexyFactory
     public function create(): Texy\Texy
     {
         $texy = new Texy\Texy();
-        $texy->setOutputMode(Texy\Texy::HTML5);
 
         return $texy;
     }

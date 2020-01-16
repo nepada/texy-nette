@@ -36,7 +36,6 @@ class TexyMultiplierTest extends TestCase
 
         $multiplier->addFactory('test', new TexyFactory());
         Assert::type(Texy::class, $multiplier->getTexy());
-        Assert::same(Texy::HTML5, $multiplier->getOutputMode());
         Assert::same('AAA', $multiplier->processTypo('AAA'));
         Assert::same('AAA', $multiplier->processLine('AAA'));
         Assert::same("<p>AAA</p>\n", $multiplier->process('AAA'));
