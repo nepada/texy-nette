@@ -26,7 +26,7 @@
 ?>
 %A%
 %s%$this->global->texyModeStack[] = $this->global->texy->getMode();
-%s%$this->global->texy->setMode("custom");
+%s%$this->global->texy->setMode(%["']%custom%["']%);
 %a%echo%a%texytypo%a%$textTypo%a%
 
 %a%echo%a%texyline%a%$textLine%a%
@@ -52,7 +52,7 @@
 ?>
 %A%
 %s%$this->global->texyModeStack[] = $this->global->texy->getMode();
-%s%$this->global->texy->setMode("default");
+%s%$this->global->texy->setMode(%["']%default%["']%);
 %a%echo%a%texytypo%a%$textTypo%a%
 
 %a%echo%a%texyline%a%$textLine%a%
