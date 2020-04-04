@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace NepadaTests\Texy;
 
-use Nepada\Texy\TexyFactory;
+use Nepada\Texy\DefaultTexyFactory;
 use Nepada\Texy\TexyMultiplier;
 use NepadaTests\TestCase;
 use Tester\Assert;
@@ -34,7 +34,7 @@ class TexyMultiplierTest extends TestCase
             "Missing Texy! factory for mode 'test'.",
         );
 
-        $multiplier->addFactory('test', new TexyFactory());
+        $multiplier->addFactory('test', new DefaultTexyFactory());
         Assert::type(Texy::class, $multiplier->getTexy());
         Assert::same('AAA', $multiplier->processTypo('AAA'));
         Assert::same('AAA', $multiplier->processLine('AAA'));

@@ -22,7 +22,7 @@ class TexyExtensionTest extends TestCase
     public function testServices(): void
     {
         Assert::type(Texy\TexyMultiplier::class, $this->container->getService('texy.multiplier'));
-        Assert::type(Texy\TexyFactory::class, $this->container->getService('texy.texyFactory'));
+        Assert::type(Texy\DefaultTexyFactory::class, $this->container->getService('texy.texyFactory'));
     }
 
     public function testTemplate(): void

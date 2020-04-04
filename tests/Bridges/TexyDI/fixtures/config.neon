@@ -1,7 +1,7 @@
 services:
     texyFactory:
         implement: Nepada\Texy\ITexyFactory
-        factory: @Nepada\Texy\TexyFactory::create
+        factory: @Nepada\Texy\DefaultTexyFactory::create
         setup:
             - $obfuscateEmail(false)
             - $allowedTags(false)

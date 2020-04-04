@@ -30,7 +30,7 @@ class TexyExtension extends Nette\DI\CompilerExtension
         assert($config instanceof \stdClass);
 
         $container->addDefinition($this->prefix('texyFactory'))
-            ->setType(Texy\TexyFactory::class);
+            ->setType(Texy\DefaultTexyFactory::class);
 
         $container->addDefinition($this->prefix('multiplier'))
             ->setType(Texy\TexyMultiplier::class)
