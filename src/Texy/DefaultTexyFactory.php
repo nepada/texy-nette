@@ -7,7 +7,7 @@ use Nepada;
 use Nette;
 use Texy;
 
-class DefaultTexyFactory implements Nepada\Texy\ITexyFactory
+class DefaultTexyFactory implements Nepada\Texy\TexyFactory
 {
 
     use Nette\SmartObject;

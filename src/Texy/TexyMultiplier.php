@@ -15,7 +15,7 @@ class TexyMultiplier
 
     use Nette\SmartObject;
 
-    /** @var ITexyFactory[] */
+    /** @var TexyFactory[] */
     private array $factories = [];
 
     /** @var Texy\Texy[] */
@@ -28,7 +28,7 @@ class TexyMultiplier
         $this->setMode($defaultMode);
     }
 
-    public function addFactory(string $name, ITexyFactory $factory): void
+    public function addFactory(string $name, TexyFactory $factory): void
     {
         $this->factories[$name] = $factory;
     }

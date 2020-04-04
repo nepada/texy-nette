@@ -33,7 +33,7 @@ Usage
 
 This extension contains simple Texy factory that only creates new instance of `Texy\Texy` and sets output mode to `HTML5`.
 
-Usually you will want to define your own factory by implementing `Nepada\Texy\ITexyFactory`, often more than one.
+Usually you will want to define your own factory by implementing `Nepada\Texy\TexyFactory`, often more than one.
 
 ```yaml
 texy:
