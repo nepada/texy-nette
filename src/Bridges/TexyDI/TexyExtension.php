@@ -47,7 +47,7 @@ class TexyExtension extends Nette\DI\CompilerExtension
         assert($config instanceof \stdClass);
 
         $multiplier = $container->getDefinition($this->prefix('multiplier'));
-        assert($multiplier instanceof Nette\DI\ServiceDefinition);
+        assert($multiplier instanceof Nette\DI\Definitions\ServiceDefinition);
         foreach ($config->factories as $name => $factory) {
             $multiplier->addSetup('addFactory', [$name, $factory]);
         }
@@ -65,7 +65,7 @@ class TexyExtension extends Nette\DI\CompilerExtension
             return;
         }
         $templateConfigurator = $container->getDefinitionByType(Nepada\TemplateFactory\TemplateConfigurator::class);
-        assert($templateConfigurator instanceof Nette\DI\ServiceDefinition);
+        assert($templateConfigurator instanceof Nette\DI\Definitions\ServiceDefinition);
         $templateConfigurator->addSetup('addFilter', ['texy', [$this->prefix('@latteFilters'), 'process']])
             ->addSetup('addFilter', ['texyLine', [$this->prefix('@latteFilters'), 'processLine']])
             ->addSetup('addFilter', ['texyTypo', [$this->prefix('@latteFilters'), 'processTypo']])
