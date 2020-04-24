@@ -24,6 +24,17 @@ final class TexyModeMacro implements Latte\IMacro
         $compiler->addMacro('texyMode', $me);
     }
 
+    public static function validateTemplate(Latte\Runtime\Template $template): void
+    {
+        if (! isset($template->global->texy) || ! $template->global->texy instanceof TexyMultiplier) {
+            $where = isset($template->global->control) && $template->global->control instanceof Nette\ComponentModel\IComponent
+                ? ' in component ' . get_class($template->global->control) . '(' . $template->global->control->getName() . ')'
+                : null;
+
+            throw new \LogicException("TexyMultiplier instance not found{$where}.");
+        }
+    }
+
     /**
      * Initializes before template parsing.
      */
@@ -83,17 +94,6 @@ final class TexyModeMacro implements Latte\IMacro
     public function nodeClosed(MacroNode $node): void
     {
         $node->closingCode = '<?php $this->global->texy->setMode(array_pop($this->global->texyModeStack)); ?>';
-    }
-
-    public static function validateTemplate(Latte\Runtime\Template $template): void
-    {
-        if (! isset($template->global->texy) || ! $template->global->texy instanceof TexyMultiplier) {
-            $where = isset($template->global->control) && $template->global->control instanceof Nette\ComponentModel\IComponent
-                ? ' in component ' . get_class($template->global->control) . '(' . $template->global->control->getName() . ')'
-                : null;
-
-            throw new \LogicException("TexyMultiplier instance not found{$where}.");
-        }
     }
 
 }

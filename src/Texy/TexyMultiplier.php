@@ -50,7 +50,7 @@ class TexyMultiplier
 
     public function getTexy(?string $mode = null): Texy\Texy
     {
-        $mode = $mode ?? $this->mode;
+        $mode ??= $this->mode;
 
         if (! isset($this->texy[$mode])) {
             if (! isset($this->factories[$mode])) {
