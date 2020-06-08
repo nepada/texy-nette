@@ -4,6 +4,7 @@ declare(strict_types = 1);
 namespace NepadaTests\Bridges\TexyDI;
 
 use Nepada\Texy;
+use NepadaTests\Environment;
 use NepadaTests\TestCase;
 use Nette;
 use Tester\Assert;
@@ -47,7 +48,7 @@ class TexyExtensionTest extends TestCase
     protected function setUp(): void
     {
         $configurator = new Nette\Configurator();
-        $configurator->setTempDirectory(TEMP_DIR);
+        $configurator->setTempDirectory(Environment::getTempDir());
         $configurator->setDebugMode(true);
         $configurator->addConfig(__DIR__ . '/fixtures/config.neon');
         $this->container = $configurator->createContainer();
