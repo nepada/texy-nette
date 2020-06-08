@@ -20,6 +20,3 @@ parameters:
         - # intended
             message: '#PHPDoc tag @throws with type Latte\\CompileException is not compatible with parent#'
             path: src/Bridges/TexyLatte/TexyModeMacro.php
-        - # intended
-            message: '#Return type \(void\) of method Nepada\\Bridges\\TexyLatte\\TexyModeMacro::nodeOpened\(\) should be compatible#'
-            path: src/Bridges/TexyLatte/TexyModeMacro.php

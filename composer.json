@@ -31,7 +31,7 @@
         "nepada/coding-standard": "^7.1.1",
         "nette/bootstrap": "^3.0@dev",
         "nette/di": "^3.0.1@dev",
-        "latte/latte": "^2.5.3@dev",
+        "latte/latte": "^2.7@dev",
         "nepada/template-factory": "2.2.0@dev",
         "nette/http": "^3.0@dev"
     },
