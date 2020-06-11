@@ -15,10 +15,14 @@ class TexyMultiplier
 
     use Nette\SmartObject;
 
-    /** @var TexyFactory[] */
+    /**
+     * @var TexyFactory[]
+     */
     private array $factories = [];
 
-    /** @var Texy\Texy[] */
+    /**
+     * @var Texy\Texy[]
+     */
     private array $texy = [];
 
     private string $mode;
