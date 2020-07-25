@@ -61,9 +61,10 @@ final class TexyModeMacro implements Latte\Macro
      * New node is found. Returns FALSE to reject.
      *
      * @param MacroNode $node
+     * @return bool|null
      * @throws Latte\CompileException
      */
-    public function nodeOpened(MacroNode $node): void
+    public function nodeOpened(MacroNode $node): ?bool
     {
         if ($node->modifiers !== '') {
             throw new Latte\CompileException("Modifiers are not allowed in {{$node->name}}.");
@@ -84,6 +85,7 @@ final class TexyModeMacro implements Latte\Macro
         $node->tokenizer->reset();
         $node->openingCode = Latte\PhpWriter::using($node)
             ->write('<?php $this->global->texyModeStack[] = $this->global->texy->getMode(); $this->global->texy->setMode(%node.word); ?>');
+        return null;
     }
 
     /**
