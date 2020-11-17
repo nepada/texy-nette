@@ -2,80 +2,71 @@
 // source: %a%Bridges/TexyDI/fixtures/test.latte
 %A%
 %a%echo%a%texytypo%a%$textTypo%a%
-
+%A?%
 %a%echo%a%texyline%a%$textLine%a%
-
+%A?%
 %a%echo%a%texy%a%$textBlock%a%
-
-<?php ob_start(function () {}) ?>LatteBlock <?php
+%A?%
+%a%ob_start(function () {})%A%LatteBlock%a%
 %s%echo %a%escapeHtmlText($textTypo)%a%
 %a%
 %s%echo%a%texytypo%a%ob_get_clean()%a%
-?>
-
-<?php ob_start(function () {}) ?>LatteBlock <?php
+%A?%
+%a%ob_start(function () {})%A%LatteBlock%a%
 %s%echo $textLine%a%
 %a%
 %s%echo%a%texyline%a%ob_get_clean()%a%
-?>
-
-<?php ob_start(function () {}) ?>LatteBlock <?php
+%A?%
+%a%ob_start(function () {})%A%LatteBlock%a%
 %s%echo $textBlock%a%
 %a%
 %s%echo%a%texy%a%ob_get_clean()%a%
-?>
 %A%
 %s%$this->global->texyModeStack[] = $this->global->texy->getMode();
 %s%$this->global->texy->setMode(%["']%custom%["']%);
 %a%echo%a%texytypo%a%$textTypo%a%
-
+%A?%
 %a%echo%a%texyline%a%$textLine%a%
-
+%A?%
 %a%echo%a%texy%a%$textBlock%a%
-
-<?php ob_start(function () {}) ?>LatteBlock <?php
+%A?%
+%a%ob_start(function () {})%A%LatteBlock%a%
 %s%echo %a%escapeHtmlText($textTypo)%a%
 %a%
 %s%echo%a%texytypo%a%ob_get_clean()%a%
-?>
-
-<?php ob_start(function () {}) ?>LatteBlock <?php
+%A?%
+%a%ob_start(function () {})%A%LatteBlock%a%
 %s%echo $textLine%a%
 %a%
 %s%echo%a%texyline%a%ob_get_clean()%a%
-?>
-
-<?php ob_start(function () {}) ?>LatteBlock <?php
+%A?%
+%a%ob_start(function () {})%A%LatteBlock%a%
 %s%echo $textBlock%a%
 %a%
 %s%echo%a%texy%a%ob_get_clean()%a%
-?>
 %A%
 %s%$this->global->texyModeStack[] = $this->global->texy->getMode();
 %s%$this->global->texy->setMode(%["']%default%["']%);
 %a%echo%a%texytypo%a%$textTypo%a%
-
+%A?%
 %a%echo%a%texyline%a%$textLine%a%
-
+%A?%
 %a%echo%a%texy%a%$textBlock%a%
-
-<?php ob_start(function () {}) ?>LatteBlock <?php
+%A?%
+%a%ob_start(function () {})%A%LatteBlock%a%
 %s%echo %a%escapeHtmlText($textTypo)%a%
 %a%
 %s%echo%a%texytypo%a%ob_get_clean()%a%
-?>
-
-<?php ob_start(function () {}) ?>LatteBlock <?php
+%A?%
+%a%ob_start(function () {})%A%LatteBlock%a%
 %s%echo $textLine%a%
 %a%
 %s%echo%a%texyline%a%ob_get_clean()%a%
-?>
-
-<?php ob_start(function () {}) ?>LatteBlock <?php
+%A?%
+%a%ob_start(function () {})%A%LatteBlock%a%
 %s%echo $textBlock%a%
 %a%
 %s%echo%a%texy%a%ob_get_clean()%a%
-?>
 %A%
 %s%$this->global->texy->setMode(array_pop($this->global->texyModeStack));
 %s%$this->global->texy->setMode(array_pop($this->global->texyModeStack));
