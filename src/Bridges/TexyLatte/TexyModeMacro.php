@@ -46,15 +46,15 @@ final class TexyModeMacro implements Latte\Macro
     /**
      * Finishes template parsing.
      *
-     * @return string[] [prolog, epilog]
+     * @return array{string, string}|null (prolog, epilog)
      */
-    public function finalize(): array
+    public function finalize(): ?array
     {
         if ($this->isUsed) {
             return [static::class . '::validateTemplate($this);', ''];
         }
 
-        return [];
+        return null;
     }
 
     /**
