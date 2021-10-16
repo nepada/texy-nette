@@ -7,6 +7,7 @@ use Latte;
 use Nepada;
 use Nepada\Texy;
 use Nette;
+use Nette\DI\Definitions\ServiceDefinition;
 
 class TexyExtension extends Nette\DI\CompilerExtension
 {
@@ -29,14 +30,14 @@ class TexyExtension extends Nette\DI\CompilerExtension
         $config = $this->getConfig();
         assert($config instanceof \stdClass);
 
-        $container->addDefinition($this->prefix('texyFactory'))
+        $container->addDefinition($this->prefix('texyFactory'), new ServiceDefinition())
             ->setType(Texy\DefaultTexyFactory::class);
 
-        $container->addDefinition($this->prefix('multiplier'))
+        $container->addDefinition($this->prefix('multiplier'), new ServiceDefinition())
             ->setType(Texy\TexyMultiplier::class)
             ->setFactory(Texy\TexyMultiplier::class, [$config->defaultMode]);
 
-        $container->addDefinition($this->prefix('latteFilters'))
+        $container->addDefinition($this->prefix('latteFilters'), new ServiceDefinition())
             ->setType(Nepada\Bridges\TexyLatte\TexyFilters::class);
     }
 
@@ -47,7 +48,7 @@ class TexyExtension extends Nette\DI\CompilerExtension
         assert($config instanceof \stdClass);
 
         $multiplier = $container->getDefinition($this->prefix('multiplier'));
-        assert($multiplier instanceof Nette\DI\Definitions\ServiceDefinition);
+        assert($multiplier instanceof ServiceDefinition);
         foreach ($config->factories as $name => $factory) {
             $multiplier->addSetup('addFactory', [$name, $factory]);
         }
@@ -65,7 +66,7 @@ class TexyExtension extends Nette\DI\CompilerExtension
             return;
         }
         $templateConfigurator = $container->getDefinitionByType(Nepada\TemplateFactory\TemplateConfigurator::class);
-        assert($templateConfigurator instanceof Nette\DI\Definitions\ServiceDefinition);
+        assert($templateConfigurator instanceof ServiceDefinition);
         $templateConfigurator->addSetup('addFilter', ['texy', [$this->prefix('@latteFilters'), 'process']])
             ->addSetup('addFilter', ['texyLine', [$this->prefix('@latteFilters'), 'processLine']])
             ->addSetup('addFilter', ['texyTypo', [$this->prefix('@latteFilters'), 'processTypo']])
