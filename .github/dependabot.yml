@@ -13,9 +13,9 @@ updates:
     allow:
       - dependency-type: "development"
     ignore:
-      - dependency-name: "nette/bootstrap"
       - dependency-name: "nette/di"
+      - dependency-name: "nette/schema"
       - dependency-name: "latte/latte"
       - dependency-name: "nepada/template-factory"
-      - dependency-name: "nette/http"
+      - dependency-name: "nette/bootstrap"
       - dependency-name: "nette/application"
