@@ -1,6 +1,5 @@
 includes:
     - vendor/phpstan/phpstan-strict-rules/rules.neon
-    - vendor/pepakriz/phpstan-exception-rules/extension.neon
     - vendor/phpstan/phpstan-nette/extension.neon
     - vendor/phpstan/phpstan-nette/rules.neon
     - vendor/spaze/phpstan-disallowed-calls/extension.neon
@@ -12,13 +11,12 @@ parameters:
     paths:
         - src
 
-    exceptionRules:
-        uncheckedExceptions:
+    exceptions:
+        implicitThrows: false
+        check:
+            missingCheckedExceptionInThrows: true
+            tooWideThrowType: true
+        uncheckedExceptionClasses:
             - LogicException
             - Nette\InvalidStateException
             - Nette\MemberAccessException
-
-    ignoreErrors:
-        - # intended
-            message: '#PHPDoc tag @throws with type Latte\\CompileException is not compatible with parent#'
-            path: src/Bridges/TexyLatte/TexyModeMacro.php
