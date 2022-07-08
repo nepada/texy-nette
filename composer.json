@@ -53,7 +53,10 @@
         }
     },
     "config": {
-        "platform-check": false
+        "platform-check": false,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": false
+        }
     },
     "extra": {
         "branch-alias": {
