@@ -27,7 +27,11 @@ class TexyFilters
         }
 
         $filterInfo->contentType = Engine::CONTENT_HTML;
-        return $this->texyMultiplier->process($text, $singleLine);
+        if ($singleLine) {
+            return $this->texyMultiplier->processLine($text);
+        } else {
+            return $this->texyMultiplier->processBlock($text);
+        }
     }
 
     public function processLine(FilterInfo $filterInfo, string $text): string

@@ -66,9 +66,21 @@ class TexyMultiplier
         return $this->texy[$mode];
     }
 
+    /**
+     * @deprecated use processBlock() or processLine() instead
+     * @param string $text
+     * @param bool $singleLine
+     * @return string
+     */
     public function process(string $text, bool $singleLine = false): string
     {
+        trigger_error('TexyMultiplier::process() is deprecated, use processBlock() or processLine() instead', E_USER_DEPRECATED);
         return $this->getTexy()->process($text, $singleLine);
+    }
+
+    public function processBlock(string $text): string
+    {
+        return $this->getTexy()->process($text);
     }
 
     public function processLine(string $text): string
