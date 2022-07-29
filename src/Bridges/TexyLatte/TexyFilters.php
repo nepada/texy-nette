@@ -22,6 +22,11 @@ class TexyFilters
 
     public function process(FilterInfo $filterInfo, string $text, bool $singleLine = false): string
     {
+        if ($singleLine) {
+            trigger_error('Using |texy filter with $singleLine = true is deprecated, use |texyLine filter instead', E_USER_DEPRECATED);
+        } elseif (func_num_args() > 2) {
+            trigger_error('Parameter $singleLine of |texy filter is deprecated', E_USER_DEPRECATED);
+        }
         if (! in_array($filterInfo->contentType, [null, Engine::CONTENT_TEXT, Engine::CONTENT_HTML], true)) {
             trigger_error('Filter |texy used with incompatible type ' . strtoupper($filterInfo->contentType), E_USER_WARNING);
         }
