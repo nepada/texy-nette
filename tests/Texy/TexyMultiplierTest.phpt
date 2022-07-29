@@ -38,7 +38,13 @@ class TexyMultiplierTest extends TestCase
         Assert::type(Texy::class, $multiplier->getTexy());
         Assert::same('AAA', $multiplier->processTypo('AAA'));
         Assert::same('AAA', $multiplier->processLine('AAA'));
-        Assert::same("<p>AAA</p>\n", $multiplier->process('AAA'));
+        Assert::same("<p>AAA</p>\n", $multiplier->processBlock('AAA'));
+        Assert::same("<p>AAA</p>\n", @$multiplier->process('AAA'));
+
+        Assert::error(
+            fn () => $multiplier->process('AAA'),
+            E_USER_DEPRECATED,
+        );
 
         $texy = $multiplier->getTexy();
         $multiplier->setMode('other');
