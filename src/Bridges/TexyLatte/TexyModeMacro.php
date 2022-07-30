@@ -87,7 +87,7 @@ final class TexyModeMacro implements Latte\Macro
         $node->empty = false;
         $node->tokenizer->reset();
         $node->openingCode = Latte\PhpWriter::using($node)
-            ->write('<?php $this->global->texyModeStack[] = $this->global->texy->getMode(); $this->global->texy->setMode(%node.word); ?>');
+            ->write('<?php $this->global->texyModeStack[] = @$this->global->texy->getMode(); @$this->global->texy->setMode(%node.word); ?>');
         return null;
     }
 
@@ -98,7 +98,7 @@ final class TexyModeMacro implements Latte\Macro
      */
     public function nodeClosed(MacroNode $node): void
     {
-        $node->closingCode = '<?php $this->global->texy->setMode(array_pop($this->global->texyModeStack)); ?>';
+        $node->closingCode = '<?php @$this->global->texy->setMode(array_pop($this->global->texyModeStack)); ?>';
     }
 
 }

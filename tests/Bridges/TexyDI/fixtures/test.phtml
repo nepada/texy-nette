@@ -22,8 +22,8 @@
 %A%
 %s%echo%a%texy%a%ob_get_clean()%a%
 %A%
-%s%$this->global->texyModeStack[] = $this->global->texy->getMode();
-%s%$this->global->texy->setMode(%["']%custom%["']%);
+%s%$this->global->texyModeStack[] = @$this->global->texy->getMode();
+%s%@$this->global->texy->setMode(%["']%custom%["']%);
 %a%echo%a%texytypo%a%$textTypo%a%
 %A?%
 %a%echo%a%texyline%a%$textLine%a%
@@ -45,8 +45,8 @@
 %A%
 %s%echo%a%texy%a%ob_get_clean()%a%
 %A%
-%s%$this->global->texyModeStack[] = $this->global->texy->getMode();
-%s%$this->global->texy->setMode(%["']%default%["']%);
+%s%$this->global->texyModeStack[] = @$this->global->texy->getMode();
+%s%@$this->global->texy->setMode(%["']%default%["']%);
 %a%echo%a%texytypo%a%$textTypo, 'custom'%a%
 %A?%
 %a%echo%a%texyline%a%$textLine, 'custom'%a%
@@ -68,8 +68,8 @@
 %A%
 %s%echo%a%texy%a%ob_get_clean()%a%
 %A%
-%s%$this->global->texy->setMode(array_pop($this->global->texyModeStack));
-%s%$this->global->texy->setMode(array_pop($this->global->texyModeStack));
+%s%@$this->global->texy->setMode(array_pop($this->global->texyModeStack));
+%s%@$this->global->texy->setMode(array_pop($this->global->texyModeStack));
 %A%
 %s%Nepada\Bridges\TexyLatte\TexyModeMacro::validateTemplate($this);
 %A%

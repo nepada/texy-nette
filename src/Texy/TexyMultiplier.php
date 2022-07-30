@@ -29,7 +29,7 @@ class TexyMultiplier
 
     public function __construct(string $defaultMode)
     {
-        $this->setMode($defaultMode);
+        $this->mode = $defaultMode;
     }
 
     public function addFactory(string $name, TexyFactory $factory): void
@@ -37,17 +37,24 @@ class TexyMultiplier
         $this->factories[$name] = $factory;
     }
 
+    /**
+     * @deprecated will be removed without replacement
+     * @return string
+     */
     public function getMode(): string
     {
+        trigger_error('Changing internal mode of TexyMultiplier is deprecated, TexyMultiplier::getMode() will be removed', E_USER_DEPRECATED);
         return $this->mode;
     }
 
     /**
+     * @deprecated specify mode explicitly in process*() method
      * @param string $name
      * @return static
      */
     public function setMode(string $name): self
     {
+        trigger_error('Changing internal mode of TexyMultiplier is deprecated, pass custom mode explicitly to process*() method', E_USER_DEPRECATED);
         $this->mode = $name;
         return $this;
     }
