@@ -10,6 +10,8 @@ use Nette;
 
 /**
  * Macro {texyMode ...}
+ *
+ * @deprecated specify custom mode explicitly in Latte filter call
  */
 final class TexyModeMacro implements Latte\Macro
 {
@@ -66,6 +68,7 @@ final class TexyModeMacro implements Latte\Macro
      */
     public function nodeOpened(MacroNode $node): ?bool
     {
+        trigger_error('{texyMode} macro is deprecated, specify custom mode explicitly in Latte filter call', E_USER_DEPRECATED);
         if ($node->modifiers !== '') {
             throw new Latte\CompileException("Modifiers are not allowed in {{$node->name}}.");
         }
