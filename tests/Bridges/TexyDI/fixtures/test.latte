@@ -7,19 +7,9 @@
 {block|texyTypo}LatteBlock {$textTypo}{/block}
 {block|texyLine}LatteBlock {$textLine|noescape}{/block}
 {block|texy}LatteBlock {$textBlock|noescape}{/block}
-{texyMode custom}
-{$textTypo|texyTypo}
-{$textLine|texyLine}
-{$textBlock|texy}
-{block|texyTypo}LatteBlock {$textTypo}{/block}
-{block|texyLine}LatteBlock {$textLine|noescape}{/block}
-{block|texy}LatteBlock {$textBlock|noescape}{/block}
-{texyMode default}
 {$textTypo|texyTypo:custom}
 {$textLine|texyLine:custom}
 {$textBlock|texy:custom}
-{block|texyTypo}LatteBlock {$textTypo}{/block}
-{block|texyLine}LatteBlock {$textLine|noescape}{/block}
-{block|texy}LatteBlock {$textBlock|noescape}{/block}
-{/texyMode}
-{/texyMode}
+{block|texyTypo:custom}LatteBlock {$textTypo}{/block}
+{block|texyLine:custom}LatteBlock {$textLine|noescape}{/block}
+{block|texy:custom}LatteBlock {$textBlock|noescape}{/block}

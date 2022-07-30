@@ -56,8 +56,6 @@ Latte templates come with a couple of filters that you can use:
 
 You can pass the name of custom mode as an argument to each of the filters.
 
-**Deprecated:** Alternatively, you can wrap your code into macro `{texyMode modeName}...{/texyMode}`, which changes the default mode for all calls inside.
-
 ### In presenters and other controls
 
 The preferred way is to inject `Nepada\Texy\TexyMultiplier` instance wherever you need it, and either use it directly or pull out desired Texy instance, e.g:
