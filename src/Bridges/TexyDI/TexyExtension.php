@@ -6,8 +6,13 @@ namespace Nepada\Bridges\TexyDI;
 use Nepada;
 use Nepada\Texy;
 use Nette;
+use Nette\Bridges\ApplicationDI\LatteExtension;
 use Nette\DI\Definitions\ServiceDefinition;
+use Nette\DI\Definitions\Statement;
 
+/**
+ * @property \stdClass $config
+ */
 final class TexyExtension extends Nette\DI\CompilerExtension
 {
 
@@ -26,42 +31,34 @@ final class TexyExtension extends Nette\DI\CompilerExtension
     public function loadConfiguration(): void
     {
         $container = $this->getContainerBuilder();
-        $config = $this->getConfig();
-        assert($config instanceof \stdClass);
 
         $container->addDefinition($this->prefix('texyFactory'), new ServiceDefinition())
             ->setType(Texy\DefaultTexyFactory::class);
 
         $container->addDefinition($this->prefix('multiplier'), new ServiceDefinition())
             ->setType(Texy\TexyMultiplier::class)
-            ->setFactory(Texy\TexyMultiplier::class, [$config->defaultMode]);
-
-        $container->addDefinition($this->prefix('latteFilters'), new ServiceDefinition())
-            ->setType(Nepada\Bridges\TexyLatte\TexyFilters::class);
+            ->setFactory(Texy\TexyMultiplier::class, [$this->config->defaultMode]);
     }
 
     public function beforeCompile(): void
     {
         $container = $this->getContainerBuilder();
-        $config = $this->getConfig();
-        assert($config instanceof \stdClass);
 
         $multiplier = $container->getDefinition($this->prefix('multiplier'));
         assert($multiplier instanceof ServiceDefinition);
-        foreach ($config->factories as $name => $factory) {
+        foreach ($this->config->factories as $name => $factory) {
             $multiplier->addSetup('addFactory', [$name, $factory]);
         }
 
-        if (! class_exists(Nepada\TemplateFactory\TemplateConfigurator::class)) {
-            return;
+        /** @var LatteExtension $latteExtension */
+        foreach ($this->compiler->getExtensions(LatteExtension::class) as $latteExtension) {
+            $latteExtension->addExtension(new Statement(
+                Nepada\Bridges\TexyLatte\TexyLatteExtension::class,
+                [
+                    'texyMultiplier' => $multiplier,
+                ],
+            ));
         }
-        $templateConfigurator = $container->getDefinitionByType(Nepada\TemplateFactory\TemplateConfigurator::class);
-        assert($templateConfigurator instanceof ServiceDefinition);
-        $templateConfigurator->addSetup('addFilter', ['texy', [$this->prefix('@latteFilters'), 'process']])
-            ->addSetup('addFilter', ['texyLine', [$this->prefix('@latteFilters'), 'processLine']])
-            ->addSetup('addFilter', ['texyTypo', [$this->prefix('@latteFilters'), 'processTypo']])
-            ->addSetup('addProvider', ['texy', $this->prefix('@multiplier')])
-            ->addSetup('addParameter', ['texy', $this->prefix('@multiplier')]);
     }
 
 }
