@@ -33,6 +33,9 @@ final class TexyMultiplier
 
     public function addFactory(string $name, TexyFactory $factory): void
     {
+        if (isset($this->factories[$name])) {
+            throw new \InvalidArgumentException("Texy! factory for mode '{$name}' is already defined.");
+        }
         $this->factories[$name] = $factory;
     }
 
