@@ -8,7 +8,7 @@ use Nepada\Texy;
 use Nette;
 use Nette\DI\Definitions\ServiceDefinition;
 
-class TexyExtension extends Nette\DI\CompilerExtension
+final class TexyExtension extends Nette\DI\CompilerExtension
 {
 
     private const DEFAULT_MODE = 'default';
