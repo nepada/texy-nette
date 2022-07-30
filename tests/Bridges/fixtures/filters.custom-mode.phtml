@@ -10,15 +10,15 @@
 %a%ob_start%A%LatteBlock%a%
 %s%echo LR\Filters::escapeHtmlText($textTypo)%a%
 %A%
-%s%echo%a%filterContent('texytypo',%a%ob_get_clean(), 'custom'%a%
+%s%echo%a%filterContent('texytypo',%a%ob_get_clean()%a?%, 'custom'%a%
 %A?%
 %a%ob_start%A%LatteBlock%a%
 %s%echo $textLine%a%
 %A%
-%s%echo%a%filterContent('texyline',%a%ob_get_clean(), 'custom'%a%
+%s%echo%a%filterContent('texyline',%a%ob_get_clean()%a?%, 'custom'%a%
 %A?%
 %a%ob_start%A%LatteBlock%a%
 %s%echo $textBlock%a%
 %A%
-%s%echo%a%filterContent('texy',%a%ob_get_clean(), 'custom'%a%
+%s%echo%a%filterContent('texy',%a%ob_get_clean()%a?%, 'custom'%a%
 %A%
