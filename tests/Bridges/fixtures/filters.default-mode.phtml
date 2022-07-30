@@ -1,0 +1,24 @@
+<?php
+%A?%source: %a%Bridges/fixtures/filters.default-mode.latte%a?%
+%A%
+%a%echo%a%texytypo%a%$textTypo%a%
+%A?%
+%a%echo%a%texyline%a%$textLine%a%
+%A?%
+%a%echo%a%texy%a%$textBlock%a%
+%A?%
+%a%ob_start(function () {})%A%LatteBlock%a%
+%s%echo %a%escapeHtmlText($textTypo)%a%
+%A%
+%s%echo%a%texytypo%a%ob_get_clean()%a%
+%A?%
+%a%ob_start(function () {})%A%LatteBlock%a%
+%s%echo $textLine%a%
+%A%
+%s%echo%a%texyline%a%ob_get_clean()%a%
+%A?%
+%a%ob_start(function () {})%A%LatteBlock%a%
+%s%echo $textBlock%a%
+%A%
+%s%echo%a%texy%a%ob_get_clean()%a%
+%A%

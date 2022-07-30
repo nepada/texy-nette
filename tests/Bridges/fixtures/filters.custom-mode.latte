@@ -1,12 +1,6 @@
 {var $textTypo = "TYPO: ... example@example.com & http://example.com"}
 {var $textLine = "LINE: ... example@example.com & http://example.com <p>paragraph</p>"}
 {var $textBlock = "BLOCK:\n... example@example.com & http://example.com <p>paragraph</p>\n\nParagraph\n"}
-{$textTypo|texyTypo}
-{$textLine|texyLine}
-{$textBlock|texy}
-{block|texyTypo}LatteBlock {$textTypo}{/block}
-{block|texyLine}LatteBlock {$textLine|noescape}{/block}
-{block|texy}LatteBlock {$textBlock|noescape}{/block}
 {$textTypo|texyTypo:custom}
 {$textLine|texyLine:custom}
 {$textBlock|texy:custom}
