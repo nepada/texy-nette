@@ -50,17 +50,19 @@ This example adds two custom factories. Note the names `foo` and `bar` - we call
 
 Latte templates come with a couple of filters that you can use:
 
-- `|texy` calls `$texy->process()`
-- `|texyLine` calls `$texy->processLine()`
-- `|texyTypo` calls `$texy->processType()`
+- `|texy:customMode` calls `$texyMultiplier->processBlock()`
+- `|texyLine:customMode` calls `$texyMultiplier->processLine()`
+- `|texyTypo:customMode` calls `$texyMultiplier->processTypo()`
 
-If you need to switch between different Texy modes, wrap your code into macro `{texyMode modeName}...{/texyMode}`. A good practice is to always use this macro and not rely on the default mode.
+You can pass the name of custom mode as an argument to each of the filters.
+
+**Deprecated:** Alternatively, you can wrap your code into macro `{texyMode modeName}...{/texyMode}`, which changes the default mode for all calls inside.
 
 ### In presenters and other controls
 
 The preferred way is to inject `Nepada\Texy\TexyMultiplier` instance wherever you need it, and either use it directly or pull out desired Texy instance, e.g:
 
  ```php
+$multiplier->processBlock($text, 'myMode');
 $texy = $multiplier->getTexy('myMode');
-$texy->process(...);
  ```
