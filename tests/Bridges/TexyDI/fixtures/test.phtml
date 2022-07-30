@@ -47,11 +47,11 @@
 %A%
 %s%$this->global->texyModeStack[] = $this->global->texy->getMode();
 %s%$this->global->texy->setMode(%["']%default%["']%);
-%a%echo%a%texytypo%a%$textTypo%a%
+%a%echo%a%texytypo%a%$textTypo, 'custom'%a%
 %A?%
-%a%echo%a%texyline%a%$textLine%a%
+%a%echo%a%texyline%a%$textLine, 'custom'%a%
 %A?%
-%a%echo%a%texy%a%$textBlock%a%
+%a%echo%a%texy%a%$textBlock, 'custom'%a%
 %A?%
 %a%ob_start(function () {})%A%LatteBlock%a%
 %s%echo %a%escapeHtmlText($textTypo)%a%
