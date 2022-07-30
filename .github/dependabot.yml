@@ -16,6 +16,5 @@ updates:
       - dependency-name: "nette/di"
       - dependency-name: "nette/schema"
       - dependency-name: "latte/latte"
-      - dependency-name: "nepada/template-factory"
       - dependency-name: "nette/bootstrap"
       - dependency-name: "nette/application"

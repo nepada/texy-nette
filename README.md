@@ -23,15 +23,13 @@ extensions:
     texy: Nepada\Bridges\TexyDI\TexyExtension
 ```
 
-This extension relies on [nepada/template-factory](https://github.com/nepada/template-factory) - make sure you've enabled it as well.
-
 
 Usage
 -----
 
 ### Configuration
 
-This extension contains simple Texy factory that only creates new instance of `Texy\Texy` and sets output mode to `HTML5`.
+This extension contains simple Texy factory that only creates new instance of `Texy\Texy`.
 
 Usually you will want to define your own factory by implementing `Nepada\Texy\TexyFactory`, often more than one.
 

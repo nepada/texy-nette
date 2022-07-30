@@ -6,7 +6,7 @@
     "keywords": ["nette", "latte", "texy"],
     "support": {
         "email": "petr@pada.cz",
-        "issues": "https://github.com/nepada/template-factory/issues"
+        "issues": "https://github.com/nepada/texy-nette/issues"
     },
     "authors": [
         {
@@ -17,7 +17,7 @@
     "require": {
         "php": ">=8.0.0 <8.2",
         "nette/utils": "^3.2@dev",
-        "texy/texy": "^3.1.5@dev"
+        "texy/texy": "^3.1.6@dev"
     },
     "require-dev": {
         "nette/tester": "2.4.2",
@@ -31,18 +31,16 @@
         "nepada/coding-standard": "7.5.1",
         "nette/di": "^3.0.6@dev",
         "nette/schema": "^1.0.3@dev",
-        "latte/latte": "^2.7@dev",
-        "nepada/template-factory": "^2.2.0@dev",
+        "latte/latte": "^3.0@dev",
         "nette/bootstrap": ">=3.0@dev",
         "nette/application": ">=3.1.4"
     },
     "conflict": {
-        "latte/latte": ">=3.0.0"
+        "latte/latte": "<3.0.0"
     },
     "suggest": {
         "nette/di": "for integration with Nette DI container",
-        "latte/latte": "to use Latte with custom Texy! macros in templates",
-        "nepada/template-factory": "to automatically inject required services into Latte templates"
+        "latte/latte": "to use Latte with custom Texy! macros in templates"
     },
     "autoload": {
         "psr-4": {

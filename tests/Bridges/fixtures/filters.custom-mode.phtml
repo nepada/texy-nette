@@ -1,24 +1,24 @@
 <?php
-%A?%source: %a%Bridges/fixtures/filters.custom-mode.latte%a?%
+%A%source: %a%Bridges/fixtures/filters.custom-mode.latte%a%
 %A%
-%a%echo%a%texytypo%a%$textTypo, 'custom'%a%
+%a%echo LR\Filters::escapeHtmlText(($this->filters->texytypo)($textTypo, 'custom'))%a%
 %A?%
-%a%echo%a%texyline%a%$textLine, 'custom'%a%
+%a%echo LR\Filters::escapeHtmlText(($this->filters->texyline)($textLine, 'custom'))%a%
 %A?%
-%a%echo%a%texy%a%$textBlock, 'custom'%a%
+%a%echo LR\Filters::escapeHtmlText(($this->filters->texy)($textBlock, 'custom'))%a%
 %A?%
-%a%ob_start(function () {})%A%LatteBlock%a%
-%s%echo %a%escapeHtmlText($textTypo)%a%
+%a%ob_start%A%LatteBlock%a%
+%s%echo LR\Filters::escapeHtmlText($textTypo)%a%
 %A%
-%s%echo%a%texytypo%a%ob_get_clean(), 'custom'%a%
+%s%echo%a%filterContent('texytypo',%a%ob_get_clean(), 'custom'%a%
 %A?%
-%a%ob_start(function () {})%A%LatteBlock%a%
+%a%ob_start%A%LatteBlock%a%
 %s%echo $textLine%a%
 %A%
-%s%echo%a%texyline%a%ob_get_clean(), 'custom'%a%
+%s%echo%a%filterContent('texyline',%a%ob_get_clean(), 'custom'%a%
 %A?%
-%a%ob_start(function () {})%A%LatteBlock%a%
+%a%ob_start%A%LatteBlock%a%
 %s%echo $textBlock%a%
 %A%
-%s%echo%a%texy%a%ob_get_clean(), 'custom'%a%
+%s%echo%a%filterContent('texy',%a%ob_get_clean(), 'custom'%a%
 %A%
