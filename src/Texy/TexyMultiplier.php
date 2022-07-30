@@ -78,19 +78,19 @@ class TexyMultiplier
         return $this->getTexy()->process($text, $singleLine);
     }
 
-    public function processBlock(string $text): string
+    public function processBlock(string $text, ?string $mode = null): string
     {
-        return $this->getTexy()->process($text);
+        return $this->getTexy($mode)->process($text);
     }
 
-    public function processLine(string $text): string
+    public function processLine(string $text, ?string $mode = null): string
     {
-        return $this->getTexy()->processLine($text);
+        return $this->getTexy($mode)->processLine($text);
     }
 
-    public function processTypo(string $text): string
+    public function processTypo(string $text, ?string $mode = null): string
     {
-        return $this->getTexy()->processTypo($text);
+        return $this->getTexy($mode)->processTypo($text);
     }
 
 }
