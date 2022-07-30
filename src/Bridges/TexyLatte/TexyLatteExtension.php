@@ -60,9 +60,7 @@ final class TexyLatteExtension extends Extension
 
     public function texyTypoFilter(FilterInfo $filterInfo, string $text, ?string $mode = null): string
     {
-        if (! in_array($filterInfo->contentType, [null, ContentType::Text, ContentType::Html], true)) {
-            trigger_error('Filter |texyTypo used with incompatible type ' . strtoupper($filterInfo->contentType), E_USER_WARNING);
-        }
+        $filterInfo->validate([null, ContentType::Text], 'texyTypo');
         return $this->texyMultiplier->processTypo($text, $mode);
     }
 
