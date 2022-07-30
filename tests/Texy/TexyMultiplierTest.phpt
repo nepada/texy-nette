@@ -60,10 +60,10 @@ class TexyMultiplierTest extends TestCase
     public function testModeSetting(): void
     {
         $multiplier = new TexyMultiplier('mode');
-        Assert::same('mode', $multiplier->getMode());
+        Assert::same('mode', @$multiplier->getMode());
 
-        $multiplier->setMode('test');
-        Assert::same('test', $multiplier->getMode());
+        @$multiplier->setMode('test');
+        Assert::same('test', @$multiplier->getMode());
     }
 
     public function testDeprecations(): void
@@ -73,6 +73,16 @@ class TexyMultiplierTest extends TestCase
 
         Assert::error(
             fn () => $multiplier->process('AAA'),
+            E_USER_DEPRECATED,
+        );
+
+        Assert::error(
+            fn () => $multiplier->setMode('foo'),
+            E_USER_DEPRECATED,
+        );
+
+        Assert::error(
+            fn () => $multiplier->getMode(),
             E_USER_DEPRECATED,
         );
     }
