@@ -9,7 +9,7 @@ use Texy;
 /**
  * @property-read Texy\Texy $texy
  */
-class TexyMultiplier
+final class TexyMultiplier
 {
 
     use Nette\SmartObject;

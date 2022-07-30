@@ -6,12 +6,9 @@ namespace Nepada\Bridges\TexyLatte;
 use Latte\Engine;
 use Latte\Runtime\FilterInfo;
 use Nepada\Texy\TexyMultiplier;
-use Nette;
 
-class TexyFilters
+final class TexyFilters
 {
-
-    use Nette\SmartObject;
 
     private TexyMultiplier $texyMultiplier;
 
