@@ -37,7 +37,7 @@ class TexyExtensionTest extends TestCase
 
         // Normalize filter name case to maintain BC
         $compiledTemplate = Strings::replace(
-            @$template->getLatte()->compile($templateFile),
+            $template->getLatte()->compile($templateFile),
             ['~texyTypo~' => 'texytypo', '~texyLine~' => 'texyline'],
         );
         Assert::matchFile(
@@ -47,7 +47,7 @@ class TexyExtensionTest extends TestCase
 
         Assert::matchFile(
             __DIR__ . '/fixtures/test.html',
-            @$template->renderToString(),
+            $template->renderToString(),
         );
     }
 

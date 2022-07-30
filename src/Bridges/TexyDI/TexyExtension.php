@@ -3,7 +3,6 @@ declare(strict_types = 1);
 
 namespace Nepada\Bridges\TexyDI;
 
-use Latte;
 use Nepada;
 use Nepada\Texy;
 use Nette;
@@ -52,16 +51,6 @@ class TexyExtension extends Nette\DI\CompilerExtension
         foreach ($config->factories as $name => $factory) {
             $multiplier->addSetup('addFactory', [$name, $factory]);
         }
-
-        if (! class_exists(Latte\Engine::class)) {
-            return;
-        }
-        /** @var Nette\Bridges\ApplicationDI\LatteExtension[] $latteExtension */
-        $latteExtension = $this->compiler->getExtensions(Nette\Bridges\ApplicationDI\LatteExtension::class);
-        if ($latteExtension === []) {
-            throw new \LogicException('LatteExtension not found, did you register it in your configuration?');
-        }
-        reset($latteExtension)->addMacro(Nepada\Bridges\TexyLatte\TexyModeMacro::class . '::install');
 
         if (! class_exists(Nepada\TemplateFactory\TemplateConfigurator::class)) {
             return;

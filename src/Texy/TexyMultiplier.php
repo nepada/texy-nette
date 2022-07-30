@@ -8,7 +8,6 @@ use Texy;
 
 /**
  * @property-read Texy\Texy $texy
- * @property string $mode
  */
 class TexyMultiplier
 {
@@ -25,11 +24,11 @@ class TexyMultiplier
      */
     private array $texy = [];
 
-    private string $mode;
+    private string $defaultMode;
 
     public function __construct(string $defaultMode)
     {
-        $this->mode = $defaultMode;
+        $this->defaultMode = $defaultMode;
     }
 
     public function addFactory(string $name, TexyFactory $factory): void
@@ -37,31 +36,9 @@ class TexyMultiplier
         $this->factories[$name] = $factory;
     }
 
-    /**
-     * @deprecated will be removed without replacement
-     * @return string
-     */
-    public function getMode(): string
-    {
-        trigger_error('Changing internal mode of TexyMultiplier is deprecated, TexyMultiplier::getMode() will be removed', E_USER_DEPRECATED);
-        return $this->mode;
-    }
-
-    /**
-     * @deprecated specify mode explicitly in process*() method
-     * @param string $name
-     * @return static
-     */
-    public function setMode(string $name): self
-    {
-        trigger_error('Changing internal mode of TexyMultiplier is deprecated, pass custom mode explicitly to process*() method', E_USER_DEPRECATED);
-        $this->mode = $name;
-        return $this;
-    }
-
     public function getTexy(?string $mode = null): Texy\Texy
     {
-        $mode ??= $this->mode;
+        $mode ??= $this->defaultMode;
 
         if (! isset($this->texy[$mode])) {
             if (! isset($this->factories[$mode])) {
@@ -71,18 +48,6 @@ class TexyMultiplier
         }
 
         return $this->texy[$mode];
-    }
-
-    /**
-     * @deprecated use processBlock() or processLine() instead
-     * @param string $text
-     * @param bool $singleLine
-     * @return string
-     */
-    public function process(string $text, bool $singleLine = false): string
-    {
-        trigger_error('TexyMultiplier::process() is deprecated, use processBlock() or processLine() instead', E_USER_DEPRECATED);
-        return $this->getTexy()->process($text, $singleLine);
     }
 
     public function processBlock(string $text, ?string $mode = null): string

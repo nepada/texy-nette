@@ -33,7 +33,6 @@ class TexyMultiplierTest extends TestCase
         Assert::same('**AAA**', $multiplier->processTypo('**AAA**'));
         Assert::same('<strong>AAA</strong>', $multiplier->processLine('**AAA**'));
         Assert::same("<p>AAA</p>\n", $multiplier->processBlock('AAA'));
-        Assert::same("<p>AAA</p>\n", @$multiplier->process('AAA'));
     }
 
     public function testInvalidMode(): void
@@ -54,36 +53,6 @@ class TexyMultiplierTest extends TestCase
             },
             \InvalidArgumentException::class,
             "Missing Texy! factory for mode 'also-missing'.",
-        );
-    }
-
-    public function testModeSetting(): void
-    {
-        $multiplier = new TexyMultiplier('mode');
-        Assert::same('mode', @$multiplier->getMode());
-
-        @$multiplier->setMode('test');
-        Assert::same('test', @$multiplier->getMode());
-    }
-
-    public function testDeprecations(): void
-    {
-        $multiplier = new TexyMultiplier('default');
-        $multiplier->addFactory('default', new DefaultTexyFactory());
-
-        Assert::error(
-            fn () => $multiplier->process('AAA'),
-            E_USER_DEPRECATED,
-        );
-
-        Assert::error(
-            fn () => $multiplier->setMode('foo'),
-            E_USER_DEPRECATED,
-        );
-
-        Assert::error(
-            fn () => $multiplier->getMode(),
-            E_USER_DEPRECATED,
         );
     }
 
