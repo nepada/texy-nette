@@ -7,7 +7,6 @@ use Nepada\Texy;
 use NepadaTests\Environment;
 use NepadaTests\TestCase;
 use Nette;
-use Nette\Utils\Strings;
 use Tester\Assert;
 
 require_once __DIR__ . '/../bootstrap.php';
@@ -39,11 +38,7 @@ class IntegrationTest extends TestCase
         $template = $this->container->getByType(Nette\Application\UI\TemplateFactory::class)->createTemplate();
         $template->setFile($templateFile);
 
-        // Normalize filter name case to maintain BC
-        $compiledTemplate = Strings::replace(
-            $template->getLatte()->compile($templateFile),
-            ['~texyTypo~' => 'texytypo', '~texyLine~' => 'texyline'],
-        );
+        $compiledTemplate = $template->getLatte()->compile($templateFile);
         Assert::matchFile(
             __DIR__ . "/fixtures/{$templateName}.phtml",
             $compiledTemplate,
