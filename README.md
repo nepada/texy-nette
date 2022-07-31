@@ -46,13 +46,25 @@ This example adds two custom factories. Note the names `foo` and `bar` - we call
 
 ### In templates
 
-Latte templates come with a couple of filters that you can use:
+There are 2 new tags for processing blocks and single lines, both with possibility to specify a custom mode:
+
+```late
+{texy fooMode}
+    - one
+    - two
+{/texy}
+
+<p>
+    {texyLine barMode}Whatever...{/texyLine}
+</p>
+```
+
+Alternatively, you can use one of 3 filters to achieve similar result:
 
 - `|texy:customMode` calls `$texyMultiplier->processBlock()`
 - `|texyLine:customMode` calls `$texyMultiplier->processLine()`
 - `|texyTypo:customMode` calls `$texyMultiplier->processTypo()`
 
-You can pass the name of custom mode as an argument to each of the filters.
 
 ### In presenters and other controls
 
