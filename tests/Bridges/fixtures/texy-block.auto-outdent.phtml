@@ -1,0 +1,11 @@
+<?php
+%A%source: %a%Bridges/fixtures/texy-block.auto-outdent.latte%a%
+%A%
+%a%ob_start%A%
+%a?%    - one
+        - a
+        - b
+    - two%a?%
+%A%
+%s%echo%a%filterContent('texy',%a%ob_get_clean()%a%
+%A%

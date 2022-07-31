@@ -7,6 +7,7 @@ use Latte\ContentType;
 use Latte\Extension;
 use Latte\Runtime\FilterInfo;
 use Nepada\Texy\TexyMultiplier;
+use Texy\Helpers;
 
 final class TexyLatteExtension extends Extension
 {
@@ -46,7 +47,7 @@ final class TexyLatteExtension extends Extension
             trigger_error('Filter |texy used with incompatible type ' . strtoupper($filterInfo->contentType), E_USER_WARNING);
         }
         $filterInfo->contentType = ContentType::Html;
-        return $this->texyMultiplier->processBlock($text, $mode);
+        return $this->processBlock($text, $mode);
     }
 
     public function texyLineFilter(FilterInfo $filterInfo, string $text, ?string $mode = null): string
@@ -62,6 +63,12 @@ final class TexyLatteExtension extends Extension
     {
         $filterInfo->validate([null, ContentType::Text], 'texyTypo');
         return $this->texyMultiplier->processTypo($text, $mode);
+    }
+
+    private function processBlock(string $text, ?string $mode = null): string
+    {
+        $text = Helpers::outdent(str_replace("\t", '    ', $text));
+        return $this->texyMultiplier->processBlock($text, $mode);
     }
 
 }

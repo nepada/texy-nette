@@ -7,6 +7,7 @@ use Nepada\Texy;
 use NepadaTests\Environment;
 use NepadaTests\TestCase;
 use Nette;
+use Nette\Utils\Strings;
 use Tester\Assert;
 
 require_once __DIR__ . '/../bootstrap.php';
@@ -44,9 +45,14 @@ class IntegrationTest extends TestCase
             $compiledTemplate,
         );
 
+        $renderedTemplate = Strings::replace(
+            $template->renderToString(),
+            '~\t~',
+            '    ',
+        );
         Assert::matchFile(
             __DIR__ . "/fixtures/{$templateName}.html",
-            $template->renderToString(),
+            $renderedTemplate,
         );
     }
 
@@ -58,6 +64,7 @@ class IntegrationTest extends TestCase
         return [
             ['filters.default-mode'],
             ['filters.custom-mode'],
+            ['texy-block.auto-outdent'],
         ];
     }
 
