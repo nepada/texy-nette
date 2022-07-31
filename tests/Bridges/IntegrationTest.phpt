@@ -65,6 +65,8 @@ class IntegrationTest extends TestCase
             ['filters.default-mode'],
             ['filters.custom-mode'],
             ['texy-block.auto-outdent'],
+            ['tags.default-mode'],
+            ['tags.custom-mode'],
         ];
     }
 

@@ -1,0 +1,17 @@
+<?php
+%A%source: %a%Bridges/fixtures/tags.custom-mode.latte%a%
+%A%
+%a%ob_start%a%
+%A%
+%a%Texy Block%a%
+%s%echo $tag%a%
+%A%
+%s%echo%a%($this->global->texy)(%a%, ...['texy', 'custom'])%a%
+%A%
+%a%ob_start%a%
+%A%
+%a%Texy Line%a%
+%s%echo $tag%a%
+%A%
+%s%echo%a%($this->global->texy)(%a%, ...['texyLine', 'custom'])%a%
+%A%

@@ -3,6 +3,8 @@ declare(strict_types = 1);
 
 namespace Nepada\Bridges\TexyLatte;
 
+use Latte\Compiler\Tag;
+use Latte\Compiler\TemplateParser;
 use Latte\ContentType;
 use Latte\Extension;
 use Latte\Runtime\FilterInfo;
@@ -17,6 +19,17 @@ final class TexyLatteExtension extends Extension
     public function __construct(TexyMultiplier $texyMultiplier)
     {
         $this->texyMultiplier = $texyMultiplier;
+    }
+
+    /**
+     * @return array<string, callable(Tag, TemplateParser): (\Generator|void)|\stdClass>
+     */
+    public function getTags(): array
+    {
+        return [
+            'texy' => fn (Tag $tag, TemplateParser $parser) => yield from TexyNode::create($tag, $parser, [$this, 'processBlock']),
+            'texyLine' => fn (Tag $tag, TemplateParser $parser) => yield from TexyNode::create($tag, $parser, [$this->texyMultiplier, 'processLine']),
+        ];
     }
 
     /**
@@ -37,7 +50,11 @@ final class TexyLatteExtension extends Extension
     public function getProviders(): array
     {
         return [
-            'texy' => $this->texyMultiplier,
+            'texy' => fn (string $text, string $tag, ?string $mode = null): string => match ($tag) {
+                    'texy' => $this->processBlock($text, $mode),
+                    'texyLine' => $this->texyMultiplier->processLine($text, $mode),
+                    default => throw new \InvalidArgumentException("Unsupported texy tag '{$tag}'"),
+            },
         ];
     }
 
@@ -65,7 +82,7 @@ final class TexyLatteExtension extends Extension
         return $this->texyMultiplier->processTypo($text, $mode);
     }
 
-    private function processBlock(string $text, ?string $mode = null): string
+    public function processBlock(string $text, ?string $mode = null): string
     {
         $text = Helpers::outdent(str_replace("\t", '    ', $text));
         return $this->texyMultiplier->processBlock($text, $mode);
