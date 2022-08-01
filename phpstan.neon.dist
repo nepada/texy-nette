@@ -26,7 +26,11 @@ parameters:
             - Nette\MemberAccessException
 
     ignoreErrors:
-        -
+        - # false positive
             message: "#^Parameter \\#1 \\$value of method Generator\\<int,array\\|null,array\\<int, Latte\\\\Compiler\\\\Nodes\\\\AreaNode\\|Latte\\\\Compiler\\\\Tag\\|null\\>,Nepada\\\\Bridges\\\\TexyLatte\\\\TexyNode\\>\\:\\:send\\(\\) expects array\\{Latte\\\\Compiler\\\\Nodes\\\\AreaNode, Latte\\\\Compiler\\\\Tag\\|null\\}, mixed given\\.$#"
+            count: 1
+            path: src/Bridges/TexyLatte/TexyNode.php
+        - # false positive
+            message: "#^Instanceof between Nepada\\\\Bridges\\\\TexyLatte\\\\TexyNode and Nepada\\\\Bridges\\\\TexyLatte\\\\TexyNode will always evaluate to true\\.$#"
             count: 1
             path: src/Bridges/TexyLatte/TexyNode.php

@@ -27,7 +27,9 @@ final class TexyNode extends Texy\Bridges\Latte\TexyNode
         $parent->current();
         $parent->send(yield); // phpcs:ignore
         $node = $parent->getReturn();
-        $node->tagName = $tag->name;
+        if ($node instanceof self) {
+            $node->tagName = $tag->name;
+        }
         return $node;
     }
 
