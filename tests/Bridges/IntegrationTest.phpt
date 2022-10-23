@@ -35,8 +35,8 @@ class IntegrationTest extends TestCase
     {
         $templateFile = __DIR__ . "/fixtures/{$templateName}.latte";
 
-        /** @var Nette\Bridges\ApplicationLatte\Template $template */
         $template = $this->container->getByType(Nette\Application\UI\TemplateFactory::class)->createTemplate();
+        assert($template instanceof Nette\Bridges\ApplicationLatte\Template);
         $template->setFile($templateFile);
 
         $compiledTemplate = $template->getLatte()->compile($templateFile);
