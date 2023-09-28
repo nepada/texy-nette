@@ -33,7 +33,7 @@
         "nette/schema": "^1.0.3@dev",
         "latte/latte": "^3.0@dev",
         "nette/bootstrap": ">=3.1@dev",
-        "nette/application": ">=3.1.4"
+        "nette/application": ">=3.1.10"
     },
     "conflict": {
         "latte/latte": "<3.0.0"
