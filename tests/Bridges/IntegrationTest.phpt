@@ -29,7 +29,6 @@ class IntegrationTest extends TestCase
 
     /**
      * @dataProvider provideTemplateNames
-     * @param string $templateName
      */
     public function testTemplate(string $templateName): void
     {

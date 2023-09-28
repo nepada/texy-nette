@@ -16,9 +16,6 @@ final class TexyNode extends Texy\Bridges\Latte\TexyNode
     private string $tagName;
 
     /**
-     * @param Tag $tag
-     * @param TemplateParser $parser
-     * @param callable $processor
      * @return \Generator<int, mixed>
      */
     public static function create(Tag $tag, TemplateParser $parser, callable $processor): \Generator
