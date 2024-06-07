@@ -5,8 +5,6 @@ parameters:
     shipmonkRules:
         allowComparingOnlyComparableTypes:
             enabled: false
-        allowNamedArgumentOnlyInAttributes:
-            enabled: false
         classSuffixNaming:
             superclassToSuffixMapping:
                 \Throwable: Exception
@@ -24,6 +22,8 @@ parameters:
             ]
         forbidNullInInterpolatedString:
             enabled: false
+        forbidReturnValueInYieldingMethod:
+            reportRegardlessOfReturnType: false
         forbidUselessNullableReturn:
             enabled: false
         requirePreviousExceptionPass:
