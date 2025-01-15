@@ -56,7 +56,7 @@ class IntegrationTest extends TestCase
     }
 
     /**
-     * @return array<mixed[]>
+     * @return list<mixed[]>
      */
     protected function provideTemplateNames(): array
     {
