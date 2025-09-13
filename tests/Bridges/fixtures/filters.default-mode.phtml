@@ -1,14 +1,14 @@
 <?php
 %A%source: %a%Bridges/fixtures/filters.default-mode.latte%a%
 %A%
-%a%echo LR\Filters::escapeHtmlText(($this->filters->texyTypo)($textTypo))%a%
+%a%echo LR\HtmlHelpers::escapeText(($this->filters->texyTypo)($textTypo))%a%
 %A?%
-%a%echo LR\Filters::escapeHtmlText(($this->filters->texyLine)($textLine))%a%
+%a%echo LR\HtmlHelpers::escapeText(($this->filters->texyLine)($textLine))%a%
 %A?%
-%a%echo LR\Filters::escapeHtmlText(($this->filters->texy)($textBlock))%a%
+%a%echo LR\HtmlHelpers::escapeText(($this->filters->texy)($textBlock))%a%
 %A?%
 %a%ob_start%A%LatteBlock%a%
-%s%echo LR\Filters::escapeHtmlText($textTypo)%a%
+%s%echo LR\HtmlHelpers::escapeText($textTypo)%a%
 %A%
 %s%echo%a%filterContent('texyTypo',%a%ob_get_clean()%a%
 %A?%

@@ -9,6 +9,7 @@ use NepadaTests\TestCase;
 use Nette;
 use Nette\Utils\Strings;
 use Tester\Assert;
+use function str_replace;
 
 require_once __DIR__ . '/../bootstrap.php';
 
@@ -41,7 +42,7 @@ class IntegrationTest extends TestCase
         $compiledTemplate = $template->getLatte()->compile($templateFile);
         Assert::matchFile(
             __DIR__ . "/fixtures/{$templateName}.phtml",
-            $compiledTemplate,
+            $this->normalizeCompiledCode($compiledTemplate),
         );
 
         $renderedTemplate = Strings::replace(
@@ -76,6 +77,20 @@ class IntegrationTest extends TestCase
         $configurator->setDebugMode(true);
         $configurator->addConfig(__DIR__ . '/fixtures/config.neon');
         $this->container = $configurator->createContainer();
+    }
+
+    private function normalizeCompiledCode(string $code): string
+    {
+        // BC with Latte <3.1
+        return str_replace(
+            [
+                'Filters::escapeHtmlText',
+            ],
+            [
+                'HtmlHelpers::escapeText',
+            ],
+            $code,
+        );
     }
 
 }
