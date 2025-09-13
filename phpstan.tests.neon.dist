@@ -23,8 +23,5 @@ parameters:
     excludePaths:
         - tests/temp/*
 
-    bootstrapFiles:
-        - tests/PHPStan/aliases.php
-
     ignoreErrors:
         - '~Call to static method Tester\\Assert::(type|count|same|notSame)\(\) with .* and .* will always evaluate to true\.~'

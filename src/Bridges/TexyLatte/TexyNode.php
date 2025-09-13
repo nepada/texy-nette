@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace Nepada\Bridges\TexyLatte;
 
-use Latte\Compiler\Nodes\Php\Expression\ArrayItemNode;
+use Latte\Compiler\Nodes\Php\ArrayItemNode;
 use Latte\Compiler\Nodes\Php\Scalar\StringNode;
 use Latte\Compiler\PrintContext;
 use Latte\Compiler\Tag;
