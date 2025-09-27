@@ -17,13 +17,11 @@ jobs:
           - 8.2
           - 8.3
           - 8.4
+          - 8.5
         composer_args:
           - ''
           - '--prefer-stable'
           - '--prefer-stable --prefer-lowest'
-        include:
-          - php: 8.5
-            composer_args: '--ignore-platform-req=php+'
     name: PHP ${{ matrix.php }} ${{ matrix.composer_args }}
     steps:
       - uses: actions/checkout@v5
