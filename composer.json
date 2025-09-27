@@ -35,8 +35,7 @@
         "nette/bootstrap": ">=3.1@dev",
         "nette/application": ">=3.1.10",
         "nette/neon": ">=3.3.4@dev",
-        "nette/http": "*@dev",
-        "nette/robot-loader": "*@dev"
+        "nette/http": "*@dev"
     },
     "conflict": {
         "latte/latte": "<3.0.6"
