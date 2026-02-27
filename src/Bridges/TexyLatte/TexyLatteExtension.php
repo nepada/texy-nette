@@ -27,8 +27,8 @@ final class TexyLatteExtension extends Extension
     public function getTags(): array
     {
         return [
-            'texy' => fn (Tag $tag, TemplateParser $parser) => yield from TexyNode::create($tag, $parser, [$this, 'processBlock']),
-            'texyLine' => fn (Tag $tag, TemplateParser $parser) => yield from TexyNode::create($tag, $parser, [$this->texyMultiplier, 'processLine']),
+            'texy' => fn (Tag $tag, TemplateParser $parser) => yield from TexyNode::create($tag, $parser, $this->processBlock(...)),
+            'texyLine' => fn (Tag $tag, TemplateParser $parser) => yield from TexyNode::create($tag, $parser, $this->texyMultiplier->processLine(...)),
         ];
     }
 
