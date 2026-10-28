@@ -24,14 +24,16 @@ final class TexyMultiplier
      */
     private array $instances = [];
 
-    private string $defaultMode;
-
-    public function __construct(string $defaultMode)
+    public function __construct(
+        private string $defaultMode,
+    )
     {
-        $this->defaultMode = $defaultMode;
     }
 
-    public function addFactory(string $name, TexyFactory $factory): void
+    public function addFactory(
+        string $name,
+        TexyFactory $factory,
+    ): void
     {
         if (isset($this->factories[$name])) {
             throw new \InvalidArgumentException("Texy! factory for mode '{$name}' is already defined.");
@@ -53,17 +55,26 @@ final class TexyMultiplier
         return $this->instances[$mode];
     }
 
-    public function processBlock(string $text, ?string $mode = null): string
+    public function processBlock(
+        string $text,
+        ?string $mode = null,
+    ): string
     {
         return $this->getTexy($mode)->process($text);
     }
 
-    public function processLine(string $text, ?string $mode = null): string
+    public function processLine(
+        string $text,
+        ?string $mode = null,
+    ): string
     {
         return $this->getTexy($mode)->processLine($text);
     }
 
-    public function processTypo(string $text, ?string $mode = null): string
+    public function processTypo(
+        string $text,
+        ?string $mode = null,
+    ): string
     {
         return $this->getTexy($mode)->processTypo($text);
     }

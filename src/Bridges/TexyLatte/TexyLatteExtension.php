@@ -14,11 +14,10 @@ use Texy\Helpers;
 final class TexyLatteExtension extends Extension
 {
 
-    private TexyMultiplier $texyMultiplier;
-
-    public function __construct(TexyMultiplier $texyMultiplier)
+    public function __construct(
+        private TexyMultiplier $texyMultiplier,
+    )
     {
-        $this->texyMultiplier = $texyMultiplier;
     }
 
     /**
@@ -58,7 +57,11 @@ final class TexyLatteExtension extends Extension
         ];
     }
 
-    public function texyFilter(FilterInfo $filterInfo, string $text, ?string $mode = null): string
+    public function texyFilter(
+        FilterInfo $filterInfo,
+        string $text,
+        ?string $mode = null,
+    ): string
     {
         if (! in_array($filterInfo->contentType, [null, ContentType::Text, ContentType::Html], true)) {
             trigger_error('Filter |texy used with incompatible type ' . strtoupper($filterInfo->contentType), E_USER_WARNING);
@@ -67,7 +70,11 @@ final class TexyLatteExtension extends Extension
         return $this->processBlock($text, $mode);
     }
 
-    public function texyLineFilter(FilterInfo $filterInfo, string $text, ?string $mode = null): string
+    public function texyLineFilter(
+        FilterInfo $filterInfo,
+        string $text,
+        ?string $mode = null,
+    ): string
     {
         if (! in_array($filterInfo->contentType, [null, ContentType::Text, ContentType::Html], true)) {
             trigger_error('Filter |texyLine used with incompatible type ' . strtoupper($filterInfo->contentType), E_USER_WARNING);
@@ -76,13 +83,20 @@ final class TexyLatteExtension extends Extension
         return $this->texyMultiplier->processLine($text, $mode);
     }
 
-    public function texyTypoFilter(FilterInfo $filterInfo, string $text, ?string $mode = null): string
+    public function texyTypoFilter(
+        FilterInfo $filterInfo,
+        string $text,
+        ?string $mode = null,
+    ): string
     {
         $filterInfo->validate([null, ContentType::Text], 'texyTypo');
         return $this->texyMultiplier->processTypo($text, $mode);
     }
 
-    public function processBlock(string $text, ?string $mode = null): string
+    public function processBlock(
+        string $text,
+        ?string $mode = null,
+    ): string
     {
         $text = Helpers::outdent(str_replace("\t", '    ', $text));
         return $this->texyMultiplier->processBlock($text, $mode);

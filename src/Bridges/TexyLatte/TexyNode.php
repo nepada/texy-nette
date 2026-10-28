@@ -21,7 +21,11 @@ final class TexyNode extends Texy\Bridges\Latte\TexyNode
      * @param \Closure(string, ?string): string $processor
      * @return \Generator<int, ?array{list<string>}, array{AreaNode, ?Tag}, static|TextNode>
      */
-    public static function create(Tag $tag, TemplateParser $parser, \Closure $processor): \Generator
+    public static function create(
+        Tag $tag,
+        TemplateParser $parser,
+        \Closure $processor,
+    ): \Generator
     {
         $parent = parent::create($tag, $parser, $processor);
         $parent->current();
