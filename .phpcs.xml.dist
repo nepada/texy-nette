@@ -13,7 +13,6 @@
     </rule>
 
     <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
-        <exclude-pattern>*/exceptions.php</exclude-pattern>
         <properties>
             <property name="rootNamespaces" type="array">
                 <element key="src" value="Nepada"/>
